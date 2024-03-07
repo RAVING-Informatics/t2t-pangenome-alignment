@@ -47,7 +47,12 @@
 
 ### Georgie’s Workflow
 
+[Parabricks-Genomics-nf](https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf)
 [Clara Parabricks v4.0.1](https://docs.nvidia.com/clara/parabricks/4.0.1/index.html)
+
+### Pangenome genotyping workflow 
+
+[/Scripts/Pangenie](./Scripts/Pangenie)
 
 # Benchmarking
 
