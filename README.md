@@ -37,10 +37,6 @@
 
 [sarek: Introduction](https://nf-co.re/sarek/3.4.0)
 
-![Untitled 1](https://github.com/RAVING-Informatics/T2T-alignment/assets/58469884/afbd5e4c-b5c5-4712-b0ec-fbe048209579)
-
-![Untitled](https://github.com/RAVING-Informatics/T2T-alignment/assets/58469884/3fd3bb36-4a01-4d7b-a265-cadd290a569d)
-
 ### Workflow Config for Setonix
 
 [nf-core/configs: pawsey_setonix](https://nf-co.re/configs/pawsey_setonix)
