@@ -1,11 +1,11 @@
 #!/bin/bash -l
 
 #SBATCH --nodes=1
-#SBATCH -c 1
+#SBATCH -c 2
 #SBATCH --job-name=sarek_align
 #SBATCH --partition=work
 #SBATCH --account=pawsey0933
-#SBATCH --mem=4gb
+#SBATCH --mem=20gb
 #SBATCH --time=1-00:00:00
 #SBATCH --export=NONE
 #SBATCH --mail-user=gavin.monahan@perkins.org.au
@@ -14,7 +14,7 @@
 #SBATCH --output=%j.%x.out
 
 export NXF_WORK=/scratch/pawsey0933/T2T
-export NXF_OPTS='-Xms1g -Xmx4g'
+export NXF_OPTS='-Xms1g -Xmx19g'
 
 module load singularity/3.11.4-slurm
 module load nextflow/23.10.0
