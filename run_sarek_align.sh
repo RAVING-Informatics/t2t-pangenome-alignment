@@ -29,5 +29,5 @@ nextflow run nf-core/sarek \
 	--skip_tools baserecalibrator \
 	--igenomes_ignore \
 	--fasta /scratch/pawsey0933/T2T/reference/chm13v2.0.maskedY.rCRS.EBV.fasta \
-	--fasta_fai /scratch/pawsey0933/T2T/reference/chm13v2.0.maskedY.rCRS.EBV.fasta \
+	--fasta_fai /scratch/pawsey0933/T2T/reference/chm13v2.0.maskedY.rCRS.EBV.fasta.fai \
 	--outdir /scratch/pawsey0933/T2T/sarek_align
