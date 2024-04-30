@@ -28,13 +28,11 @@
 
 **T2T-Aligned VCFs**
 
-- 1000Genomes (SNPs/Indels)
+- [1000Genomes (SNPs/Indels) - human-pangenomics](https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/CHM13/assemblies/variants/1000_Genomes_Project/chm13v2.0/all_samples_3202/)
 
-[human-pangenomics](https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/CHM13/assemblies/variants/1000_Genomes_Project/chm13v2.0/all_samples_3202/)
+- [1000Genomes (SVs) - nanopore](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1KG_ONT_VIENNA/)
 
-- 1000Genomes (SVs)
-
-[nanopore](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/1KG_ONT_VIENNA/)
+- [Simons Genome Diversity Project](https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/CHM13/assemblies/variants/SGDP/chm13v2.0/)
 
 - gnomAD v3.1.2 liftover
 
