@@ -2,12 +2,12 @@
 
 #SBATCH --job-name=pangenie
 #SBATCH --account=pawsey0933
-#SBATCH --partition=work
+#SBATCH --partition=long
 #SBATCH --ntasks=1
-#SBATCH --cpus-per-task=8
-#SBATCH --mem=16G
+#SBATCH --cpus-per-task=4
+#SBATCH --mem=230G
 #SBATCH --nodes=1
-#SBATCH --time=00:30:00
+#SBATCH --time=48:00:00
 #SBATCH --mail-user=chiara.folland@perkins.org.au
 #SBATCH --mail-type=END
 #SBATCH --error=%j.%x.err
@@ -20,11 +20,11 @@ module load bcftools/1.15--haf5b3da_0
 module load samtools/1.15--h3843a85_0 #htslib
 
 # Set variables 
-input_file=/scratch/pawsey0933/cfolland/pangenie/samplesheet_test.csv
+input_file=/software/projects/pawsey0933/pangenie/samplesheet/t2t_samplesheet.csv
 image_dir=/scratch/pawsey0933/cfolland/pangenie/container/
 image_name=/scratch/pawsey0933/cfolland/pangenie/container/pangenie.sif
 ref=/scratch/pawsey0933/cfolland/pangenie/refs/CHM13v11Y.fa
-graph_vcf=/scratch/pawsey0933/cfolland/pangenie/refs/chm13_cactus_filtered_ids_biallelic.vcf
+graph_vcf=/scratch/pawsey0933/cfolland/pangenie/refs/chm13_cactus_filtered_ids.vcf
 outdir=/scratch/pawsey0933/cfolland/pangenie/output
 decomp_script=/scratch/pawsey0933/cfolland/pangenie/scripts_gs/convert-to-biallelic.py
 
