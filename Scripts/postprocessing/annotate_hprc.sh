@@ -1,5 +1,3 @@
-#Use the script to annotate the T2T variants with the AF from the HPRC and then filter for variantd less than 0.001
-
 #!/bin/bash -l
 
 #SBATCH --job-name=annotate_vcfs_hprc
@@ -35,11 +33,11 @@ awk 'BEGIN {
     print $1"\t"$2"\t.\t"$3"\t"$4"\t.\t.\tAF="$5
 }' hprc_af.txt > hprc_af.vcf
 
-# Step 2: Ensure HPRC VCF is bgzipped and indexed
+#Ensure HPRC VCF is bgzipped and indexed
 bgzip -c hprc_af.vcf > hprc_af.vcf.gz
 tabix -p vcf hprc_af.vcf.gz
 
-#Step 1: Create a configuration file for vcfanno
+#Create a configuration file for vcfanno
 cat <<EOF > hprc_anno.conf
 [[annotation]]
 file="hprc_af.vcf.gz"
@@ -49,15 +47,9 @@ names=["AF_HPRC"]
 type="Float"  # Explicitly define it as a Float
 EOF
 
-# Step 3: Annotate VCF with allele frequencies using vcfanno
+#Annotate VCF with allele frequencies using vcfanno
 vcfanno -p 4 hprc_anno.conf sorted_toref_genmod_final.vcf.gz > sorted_toref_genmod_final_hprc.vcf
 
-# Step 4: Compress and index the annotated VCF
+#Compress and index the annotated VCF
 bgzip -c sorted_toref_genmod_final_hprc.vcf > sorted_toref_genmod_final_hprc.vcf.gz
 tabix -p vcf sorted_toref_genmod_final_hprc.vcf.gz
-
-# Step 5: Filter based on allele frequency using bcftools
-bcftools filter -i 'INFO/AF_HPRC <= 0.001' sorted_toref_genmod_final_hprc.vcf.gz -o sorted_toref_genmod_final_filtered_hprc.vcf.gz
-
-#Step 6: Index the filtered VCF
-tabix -p vcf sorted_toref_genmod_final_filtered_hprc.vcf.gz
