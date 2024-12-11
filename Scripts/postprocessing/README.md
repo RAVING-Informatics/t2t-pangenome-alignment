@@ -4,6 +4,7 @@ Step 1 ) Annotate cohort frequencies from control populations
 - 3202 srGS samples from 1000 Genomes Phase 3 recalled on T2T-CHM13
 - The Human Pangenome Reference Consortium (HPRC) T2T-CHM13 callset, including 44 high quality diploid human assemblies
 - 76,156 srGS aligned to GRCh38 from gnomAD v3.1.2 and lifted over to T2T-CHM13
+
 See scripts: `combined_annotation.sh`
 
 Step 2 ) Filter out low quality variants
