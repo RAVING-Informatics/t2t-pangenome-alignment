@@ -20,3 +20,4 @@ wget -r -l1 -nd -nc -A "Homo_sapiens-GCA_009914755.4-2022_10-1000Genomes*" ftp:/
 wget  -r -l1 -nd -nc -A "Homo_sapiens-GCA_009914755.4-2022_10-gnomad.vcf.gz*" ftp://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_009914755.4/ensembl/variation/2022_10/vcf/
 wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.vcf.gz
 wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.vcf.gz.tbi
+wget https://zenodo.org/record/7839719/files/chm13_cactus_filtered_ids_biallelic.vcf.gz
