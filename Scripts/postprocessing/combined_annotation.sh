@@ -19,7 +19,7 @@ module load vcftools/0.1.16--pl5321hd03093a_7
 module load bcftools/1.15--haf5b3da_0
 conda activate vcf_tools
 
-cd /scratch/pawsey0933/cfolland/t2t/
+cd /scratch/pawsey0933/cfolland/t2t/annotation
 
 #Ensure the allele frequency (AF) field is present in the INFO column of the VCFs.
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT\t%INFO/AF\n' /software/projects/pawsey0933/pangenie/refs/chm13_cactus_filtered_ids_biallelic.vcf.gz > hprc_af.txt
@@ -44,7 +44,7 @@ awk 'BEGIN {
     print "#CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO"
 } {
     print $1"\t"$2"\t.\t"$3"\t"$4"\t.\t.\tAF="$5
-}' hprc_af.txt > hgsvc3_af.vcf
+}' hgsvc3_af.txt > hgsvc3_af.vcf
 
 awk 'BEGIN {
     print "##fileformat=VCFv4.2"
@@ -100,10 +100,10 @@ names=["AF_1000G"]
 type="Float"  # Explicitly define it as a Float
 
 [[annotation]]
-file="gnomad_af.vcf.gz"
+file="hgsvc3_af.vcf.gz"
 fields=["AF"]
 ops=["self"]
-names=["AF_gnomad"]
+names=["AF_hgsvc3"]
 type="Float"  # Explicitly define it as a Float
 EOF
 
