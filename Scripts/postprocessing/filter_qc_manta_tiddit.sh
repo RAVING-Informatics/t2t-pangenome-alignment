@@ -31,11 +31,6 @@ bcftools view -v snps,indels sorted_toref_genmod_final_hprc_gnomad_1000g_biallel
 bcftools view -v other,indels sorted_toref_genmod_final_hprc_gnomad_1000g_biallelic.vcf.gz | bcftools filter -e 'ID~"^chr"' | bcftools view -i 'FILTER="PASS" && QUAL > 250' -Oz -o sorted_toref_genmod_final_manta_qc.vcf.gz
 bcftools view -v other,indels sorted_toref_genmod_final_hprc_gnomad_1000g_biallelic.vcf.gz | bcftools filter -e 'ID~"^chr" || ID~"^Manta"' | bcftools view -i 'FILTER="PASS" && QUAL > 10' -Oz -o sorted_toref_genmod_final_tiddit_qc.vcf.gz
 
-##Filter based on qc 
-bcftools view -v snps,indels sorted_toref_genmod_final_hprc_gnomad_1000g_biallelic.vcf.gz | bcftools filter -e 'ID~"^SV" || ID~"^Manta"'  -Oz -o sorted_toref_genmod_final_snps.vcf.gz
-bcftools view -v other,indels sorted_toref_genmod_final_hprc_gnomad_1000g_biallelic.vcf.gz | bcftools filter -e 'ID~"^chr"' -Oz -o sorted_toref_genmod_final_manta.vcf.gz
-bcftools view -v other,indels sorted_toref_genmod_final_hprc_gnomad_1000g_biallelic.vcf.gz | bcftools filter -e 'ID~"^chr" || ID~"^Manta"' -Oz -o sorted_toref_genmod_final_tiddit.vcf.gz
-
 #tabix
 tabix -p vcf sorted_toref_genmod_final_snps_qc.vcf.gz 
 tabix -p vcf sorted_toref_genmod_final_manta_qc.vcf.gz 
