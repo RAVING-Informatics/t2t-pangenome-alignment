@@ -19,10 +19,10 @@ module load vcftools/0.1.16--pl5321hd03093a_7
 module load bcftools/1.15--haf5b3da_0
 conda activate vcf_tools
 
-cd /scratch/pawsey0933/cfolland/t2t/
+cd /scratch/pawsey0933/cfolland/t2t/annotation
 
 # Sort the BED file
-sort -k1,1 -k2,2n chm13v2-unique_to_hg38.bed > chm13v2-unique_to_hg38_sorted.bed
+sort -k1,1 -k2,2n /software/projects/pawsey0933/t2t/refs/chm13v2-unique_to_hg38.bed > chm13v2-unique_to_hg38_sorted.bed
 
 #add annotation column
 awk '{print $0"\tUniqueT2T"}' chm13v2-unique_to_hg38_sorted.bed > chm13v2-unique_to_hg38_with_label.bed
@@ -41,8 +41,8 @@ names=["UniqueT2T"]
 EOF
 
 # Annotate VCF with unique regions using vcfanno
-vcfanno -p 4 unique.conf sorted_toref_genmod_final.vcf.gz > sorted_toref_genmod_final_unique.vcf
+vcfanno -p 4 unique.conf T2T_snps_dysgu_VEP_genmod_annotated.vcf.gz > T2T_snps_dysgu_VEP_genmod_annotated_unique.vcf
 
 # Compress and index the annotated VCF
-bgzip -c sorted_toref_genmod_final_unique.vcf > sorted_toref_genmod_final_unique.vcf.gz
-tabix -p vcf sorted_toref_genmod_final_unique.vcf.gz
+bgzip -c T2T_snps_dysgu_VEP_genmod_annotated_unique.vcf > T2T_snps_dysgu_VEP_genmod_annotated_unique.vcf.gz
+tabix -p vcf T2T_snps_dysgu_VEP_genmod_annotated_unique.vcf.gz
