@@ -108,8 +108,8 @@ type="Float"  # Explicitly define it as a Float
 EOF
 
 #Annotate VCF with allele frequencies using vcfanno
-vcfanno -p 4 combined_anno.conf sorted_toref_genmod_final.vcf.gz > sorted_toref_genmod_final_annotated.vcf
+vcfanno -p 4 combined_anno.conf ../cohort/T2T_snps_dysgu_VEP_ac10_CSQonly_rehead_genmod.vcf.gz > T2T_snps_dysgu_VEP_genmod_annotated.vcf
 
 #Compress and index the annotated VCF
-bgzip -c sorted_toref_genmod_final_annotated.vcf > sorted_toref_genmod_final_annotated.vcf.gz
-tabix -p vcf sorted_toref_genmod_final_annotated.vcf.gz
+bgzip -c T2T_snps_dysgu_VEP_genmod_annotated.vcf > T2T_snps_dysgu_VEP_genmod_annotated.vcf.gz
+tabix -p vcf T2T_snps_dysgu_VEP_genmod_annotated.vcf.gz
