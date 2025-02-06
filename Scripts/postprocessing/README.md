@@ -2,7 +2,8 @@ These postprocessing scripts are to be used on the cohort VCF produced after run
 
 Step 1 ) Annotate cohort frequencies from control populations
 - 3202 srGS samples from 1000 Genomes Phase 3 recalled on T2T-CHM13
-- The Human Pangenome Reference Consortium (HPRC) T2T-CHM13 callset, including 44 high quality diploid human assemblies
+- The Human Pangenome Reference Consortium (HPRC) T2T-CHM13 callset, including 44 high quality diploid human assemblies, as described in [Liao et al. 2023](https://www.nature.com/articles/s41586-023-05896-x).
+- The combined HPRC and HGSVC3 T2T-CHM13 callset, including 42 HPRC assemblies + 65 HGVCS3, as described in [Logsdon et al. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11451754/) 
 - 76,156 srGS aligned to GRCh38 from gnomAD v3.1.2 and lifted over to T2T-CHM13
 
 See scripts: `combined_annotation.sh`
