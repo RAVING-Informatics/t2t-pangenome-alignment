@@ -1,4 +1,4 @@
-Calculate mendelian-violation rate using GATK VariantEval MendelianViolationEvaluator
+Calculate mendelian-violation rate using GATK `VariantEval MendelianViolationEvaluator`
 
 **Setup Instructions**
 
