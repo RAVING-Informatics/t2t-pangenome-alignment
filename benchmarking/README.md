@@ -69,7 +69,7 @@ Intersect the clinvar variants with the variant callsets using `intersect_clinva
 
 **Masked Regions**
 
-To view the variant quality scores for variants in tehcnically reliable regions accessible using short read mapping, download the short-read accessibility mask:
+To view the variant quality scores for variants in technically reliable regions accessible using short read mapping, download the short-read accessibility mask:
 
 ```
 wget https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/CHM13/assemblies/annotation/accessibility/combined_mask.bed
@@ -78,6 +78,15 @@ gzip -d hg38.combined_mask.bed.gz
 ```
 Intesect the cohort VCF file with the mask using the `intersect_mask.sh` script. 
 
+**Syntenic Regions**
+
+To view the variant quality scores for variants in regions of CHM13 that are syntenic to GRCh38, download the regions that are non-syntenic between GRCh38 and CHM13:
+
+```
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/CHM13/assemblies/chain/v1_nflo/chm13v2-unique_to_hg38.bed
+```
+
+Use the script `syntenic_regions.sh` to generate a cohort VCF containing only syntenic variants. 
 
 **Mendelian Violations**
 
