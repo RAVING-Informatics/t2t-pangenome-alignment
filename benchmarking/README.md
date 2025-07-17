@@ -67,6 +67,18 @@ bcftools view -H chm13v2.0_ClinVar20220313.vcf.gz | wc -l
 ```
 Intersect the clinvar variants with the variant callsets using `intersect_clinvar.sh`
 
+**Masked Regions**
+
+To view the variant quality scores for variants in tehcnically reliable regions accessible using short read mapping, download the short-read accessibility mask:
+
+```
+wget https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/CHM13/assemblies/annotation/accessibility/combined_mask.bed
+https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/CHM13/assemblies/annotation/accessibility/hg38.combined_mask.bed.gz
+gzip -d hg38.combined_mask.bed.gz
+```
+Intesect the cohort VCF file with the mask using the `intersect_mask.sh` script. 
+
+
 **Mendelian Violations**
 
 Calculate mendelian-violation rate using GATK `VariantEval MendelianViolationEvaluator`
