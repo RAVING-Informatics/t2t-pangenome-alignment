@@ -108,3 +108,9 @@ singularity pull docker://broadinstitute/gatk@sha256:71b17ee42d149e8ec112603f530
 *Run Script*
 
 `gatk_mendel.sh`
+
+**PASS Variants**
+
+Use `bcftools view` to count the number of PASS variants were called by Dysgu for each sample.
+
+Use the `pass_variants_dysgu.sh` script.
