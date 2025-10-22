@@ -56,5 +56,5 @@ $ singularity pull quay.io/biocontainers/mosdepth:0.3.3--h37c5b7d_2
 3) Collect per-base coverage for a specific gene/interval of interest
 The script `collect_coverage_perbase.py` extracts the per-gene coverage for a single genomic interval from many per-base mosdepth outputs and writes a single long-format table:
 `gene	chr	start	end	sample	depth`
-The script can be run easy using `merge_files.sh`
+The script can be run easy using `merge_files.sh`. The first time this script is run, lots of resources are needed as the python script will index the per-base.bed.gz files before extracting the depth metrics. After the first run, the time and memory allocations can be reduced significantly.
    
