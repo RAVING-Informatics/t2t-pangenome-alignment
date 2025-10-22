@@ -1,7 +1,7 @@
 ## Generate a .BED file containing coordinates for NMD genes
 
 1) Source a list of genes associated with neuromuscular diseases. I used the list of genes run on the [PathWest neuromuscular gene panel](https://pathwest.health.wa.gov.au/Our-Services/Clinical-Services/Diagnostic-Genomics/Neurogenetics)
-- This encompasses 912 genes: `nmd_gene_list.tsv`
+- This encompasses 912 genes, and FRG1 and FRG2 were added manually : `nmd_gene_list.tsv`
 
 2) Source the appropriate annotation files
 - I used the RefSeq annotation from 2025_08.
