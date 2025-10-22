@@ -12,20 +12,23 @@ wget https://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/annotation_release
 wget https://ftp.ncbi.nlm.nih.gov/refseq/H_sapiens/annotation/annotation_releases/GCF_000001405.40-RS_2025_08/GCF_000001405.40_GRCh38.p14_genomic.gtf.gz
 ```
 
-3) Map the chromosome RefSeq IDs (NC_00#) to chromosome names (chr#)
-- The new GTF files contain Refseq IDs `NC_00*` instead of chromosome names i.e. `chr1`
-    - Create a mapping file for the RefSeq Ids to chromosome names: `refseq-chr_chm13.tsv`  `refseq-chr_grch38.tsv`
-    - Create a new script to change the refseq ids to chromsome names in the bed file: `refseq-chr.sh`
-
-4) Run script `gtf-bed_transcripts.sh` to extract out transcripts from gtf file
+3) Run script `gtf-bed_transcripts.sh` to extract out transcripts from gtf file
 - Extracting out the coordinates from the “gene” entry in the gtf file was fallible as each “gene” is defined differently across the reference builds.
 - It was best therefore to extract out the transcripts, find the intersection of the transcripts described across the two reference builds, then aggregate the coordinates across the transcripts to essentially define new gene regions for each reference build.
 
-5) Find the intersection of transcripts described across the two reference builds with `intersect.sh`
+4) Find the intersection of transcripts described across the two reference builds with `intersect.sh`
+
+5)  Map the chromosome RefSeq IDs (NC_00#) to chromosome names (chr#)
+- The new GTF files contain Refseq IDs `NC_00*` instead of chromosome names i.e. `chr1`
+    - Create a mapping file for the RefSeq Ids to chromosome names: `refseq-chr_chm13.tsv`  `refseq-chr_grch38.tsv`
+    - Create a new script to change the refseq ids to chromsome names in the bed file: `refseq-chr.sh`
+```
+$ ./refseq-chr.sh refseq-chr_grch38.tsv GCF_000001405.40_GRCh38.p14.transcripts.shared.bed GCF_000001405.40_GRCh38.p14.transcripts.shared.fixed.bed
+```
 
 6) Use `aggregate_genes.sh` to aggregate across transcripts and define a new gene coordinate set for each reference genome bed file
   - 
 7) Filter bed file to include only NMD genes: `filter.py`
 
-8) 
+9) 
    
