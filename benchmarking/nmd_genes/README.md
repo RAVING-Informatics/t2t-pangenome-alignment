@@ -1,3 +1,5 @@
+## Generate a .BED file containing coordinates for NMD genes
+
 1) Source a list of genes associated with neuromuscular diseases. I used the list of genes run on the [PathWest neuromuscular gene panel](https://pathwest.health.wa.gov.au/Our-Services/Clinical-Services/Diagnostic-Genomics/Neurogenetics)
 - This encompasses 912 genes: `nmd_gene_list.tsv`
 
@@ -27,8 +29,21 @@ $ ./refseq-chr.sh refseq-chr_grch38.tsv GCF_000001405.40_GRCh38.p14.transcripts.
 ```
 
 6) Use `aggregate_genes.sh` to aggregate across transcripts and define a new gene coordinate set for each reference genome bed file
-  - 
-7) Filter bed file to include only NMD genes: `filter.py`
 
-9) 
+```
+$ ./aggregate_genes.sh GCF_000001405.40_GRCh38.p14.transcripts.shared.fixed.bed GCF_000001405.40_GRCh38.p14.genes_aggregate.bed
+```
+7) Filter bed file to include only NMD genes: `filter.py`
+- Output file: `nmd_gene_list_chm13.bed` or `nmd_gene_list_grch38.bed`
+```
+$ python3 filter.py
+```
+
+## Run Mosdepth using .BED file as input with `--by` flag
+1) Download mosdepth singularity image
+```
+$ singularity pull quay.io/biocontainers/mosdepth:0.3.3--h37c5b7d_2
+```
+2) Run Mosdepth on all samples
+- Batch mosdepth using `run_mosdepth.sh` script which generates individual jobs for each `.cram` file using `mosdepth.sh`
    
