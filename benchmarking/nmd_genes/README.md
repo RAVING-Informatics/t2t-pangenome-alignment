@@ -57,4 +57,24 @@ $ singularity pull quay.io/biocontainers/mosdepth:0.3.3--h37c5b7d_2
 The script `collect_coverage_perbase.py` extracts the per-gene coverage for a single genomic interval from many per-base mosdepth outputs and writes a single long-format table:
 `gene	chr	start	end	sample	depth`
 The script can be run easy using `merge_files.sh`. The first time this script is run, lots of resources are needed as the python script will index the per-base.bed.gz files before extracting the depth metrics. After the first run, the time and memory allocations can be reduced significantly.
-   
+
+## Generate TSV files with exon and intron specifications for a gene
+1) The python script `gtf_region_to_tables.py` can be used to extract out the co-ordinates of exons and introns for a gene of interest from a gtf file input.
+The python script requires the following inputs:
+- gtf: use the original gtf file (that matches the ref)
+- region: coordinates of the gene `chr:start-end`
+2) Use the bash script `gtf-exons.sh` to run the python script
+- ref: either `chm13` or `grch38`
+- gtf: same as above
+- region_file: this is .bed file generated above (`nmd_gene_list_chm13.bed` or `nmd_gene_list_grch38.bed`) - this is used to collect the coordinates of the gene
+- mapfile: use the same file used to map the chromosome RefSeq IDs (NC_00#) to chromosome names (chr#) - i.e. `refseq-chr_hg38.tsv`
+- gene: gene name
+
+## Plot the per-base gene coverage in R
+1) Use the script: `perbase_coverage_chm13-hg38.R` to generate a plot of the per-base coverage across a gene of interest.
+- Ensure to specify the gene of interest: @line160
+- As input, you need the exons and merged mosdepth results, for example:
+  - `FRG2.perbase_mosdepth_hg38.tsv`
+  - `FRG2.perbase_mosdepth_chm13.tsv`
+  - `FRG2.grch38.exons.tsv`
+  - `FRG2.chm13.exons.tsv`
