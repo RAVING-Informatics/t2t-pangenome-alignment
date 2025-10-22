@@ -53,5 +53,8 @@ $ singularity pull quay.io/biocontainers/mosdepth:0.3.3--h37c5b7d_2
 2) Run Mosdepth on all samples
 - Batch mosdepth using `run_mosdepth.sh` script which generates individual jobs for each `.cram` file using `mosdepth.sh`
 
-- 
+3) Collect per-base coverage for a specific gene/interval of interest
+The script `collect_coverage_perbase.py` extracts the per-gene coverage for a single genomic interval from many per-base mosdepth outputs and writes a single long-format table:
+`gene	chr	start	end	sample	depth`
+The script can be run easy using `merge_files.sh`
    
