@@ -78,3 +78,4 @@ The python script requires the following inputs:
   - `FRG2.perbase_mosdepth_chm13.tsv`
   - `FRG2.grch38.exons.tsv`
   - `FRG2.chm13.exons.tsv`
+- Example outputs are provided, see `ACTN2.grch38-chm13_perbase_cov.pdf`
