@@ -38,6 +38,12 @@ $ ./aggregate_genes.sh GCF_000001405.40_GRCh38.p14.transcripts.shared.fixed.bed 
 ```
 $ python3 filter.py
 ```
+8) Check that the genes match across all three files:
+- `nmd_gene_list_chm13.bed`
+- `nmd_gene_list_grch38.bed`
+- `nmd_gene_list.tsv`
+
+**1 gene missing NDUFA4 = COXFA4 - manually copy over gene coordinates into the .bed files**
 
 ## Run Mosdepth using .BED file as input with `--by` flag
 1) Download mosdepth singularity image
@@ -46,4 +52,6 @@ $ singularity pull quay.io/biocontainers/mosdepth:0.3.3--h37c5b7d_2
 ```
 2) Run Mosdepth on all samples
 - Batch mosdepth using `run_mosdepth.sh` script which generates individual jobs for each `.cram` file using `mosdepth.sh`
+
+- 
    
