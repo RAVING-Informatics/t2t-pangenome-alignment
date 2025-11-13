@@ -61,6 +61,9 @@ The script `collect_coverage_perbase.py` extracts the per-gene coverage for a si
 `gene	chr	start	end	sample	depth`
 The script can be run easy using `merge_files.sh`. The first time this script is run, lots of resources are needed as the python script will index the per-base.bed.gz files before extracting the depth metrics. After the first run, the time and memory allocations can be reduced significantly.
 
+5) Collect per-base coverage for multiple gene/intervals of interest
+The script `collect_coverage_perbase_bed.py` achieves the same result as `collect_coverage_perbase.py`, however instead of taking a single gene/interval as input, it accepts a `.bed` file with multiple gene/intervals as input. This script can be run using `merge_files_gene_bed.sh`.
+
 ## Generate TSV files with exon and intron specifications for a gene
 1) The python script `gtf_region_to_tables.py` can be used to extract out the co-ordinates of exons and introns for a gene of interest from a gtf file input.
 The python script requires the following inputs:
