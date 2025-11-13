@@ -21,7 +21,7 @@ source /software/projects/pawsey0933/cfolland/miniconda3/etc/profile.d/mamba.sh
 #define variables
 ref=hg38
 method=linear
-agg_py=/software/projects/pawsey0933/benchmarking/nmd_genes/perbase_agg.py
+agg_py=/software/projects/pawsey0933/benchmarking/nmd_genes/perbase_agg_summary.py
 merged=all.perbase_mosdepth_${method}_${ref}.tsv
 sorted=all.perbase_mosdepth_${method}_${ref}.sorted.tsv
 final=all.perbase_mosdepth.summary.${method}_${ref}.tsv
