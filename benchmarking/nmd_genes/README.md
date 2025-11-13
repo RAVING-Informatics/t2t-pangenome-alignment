@@ -85,3 +85,6 @@ The python script requires the following inputs:
   - `FRG2.grch38.exons.tsv`
   - `FRG2.chm13.exons.tsv`
 - Example outputs are provided, see `ACTN2.grch38-chm13_perbase_cov.pdf`
+
+## Calculate coverage uniformity
+1) Using the file generated [above](url)
