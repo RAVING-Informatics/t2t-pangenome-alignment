@@ -87,4 +87,5 @@ The python script requires the following inputs:
 - Example outputs are provided, see `ACTN2.grch38-chm13_perbase_cov.pdf`
 
 ## Calculate coverage uniformity
-1) Using the file generated [above](url)
+1) The output file `all.perbase_mosdepth_${method}_${ref}.tsv` generated in step 5 [above](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/README.md#run-mosdepth-using-bed-file-as-input-with---by-flag)), can be used to calculate summary statstics for coverage across each gene per sample. If many genes were used as input, this will be a very large file, so it need to be sorted according to gene, sample and depth. 
+2) The python script `perbase_agg_summary.sh` calculates the min/max/range/mean/median/SD per gene/sample from a pre-sorted file. Run the sorting and the python script using `summarise.sh`.
