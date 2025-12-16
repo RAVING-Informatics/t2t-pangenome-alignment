@@ -16,9 +16,13 @@ Use the use the `samtools_submit_all.sh` script to specify the location of the `
 ## VARIANT QUALITY
 **`bcftools stats`**
 
-Run `bcftools stats` on the deepvariant and dysgu VCFs for each sample (not the g.vcf files). 
+Run `bcftools stats` on the deepvariant and dysgu VCFs for each sample (not the g.vcf files) using `bcftools_stats_ind.sh`. This is to generate per-sample summary statistics and also a plot of the number of variants of a certain variant quality score. See attached plot for example.
 
-This is to generate a plot of the number of variants of a certain variant quality score. See attached plot for example.
+Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_stats_cohort.sh`.
+
+- bcftools files are available on the IRDS.  
+  - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/bcftools_v1.15/`
+  - grch38 `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/bcftools/`
 
 *Inputs*
 
