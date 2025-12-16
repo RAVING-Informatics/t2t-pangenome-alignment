@@ -2,6 +2,14 @@
 
 Run `samtools stats` on the mapped `BAM` files output from `sarek`.
 Use the use the `samtools_submit_all.sh` script to specify the location of the `BAM` files. This script will iterate through and submit individual jobs for each in combination with `samtools_stats.sh`.
+- Alternatively, samtools stats is run as part of the `sarek/nfcore` workflow, with individual results stored in `./reports/samtools/`.
+- Results for this project are available on the IRDS:
+  - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/samtools`
+  - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/samtools`
+- Use the multiqc report to extract out useful metric, including the number of mapped / unmapped reads.
+  - Export the `samtools-stats-dp` data. See example `samtools-stats-dp.tsv`
+  - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/multiqc/multiqc_report.html`
+  - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/multiqc/multiqc_report.html`
 
 **`bcftools stats`**
 
