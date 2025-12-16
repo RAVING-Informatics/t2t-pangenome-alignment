@@ -1,10 +1,10 @@
 # T2T Re-alignment
 
-# Release Paper
-
+## Release Papers
 [The complete sequence of a human genome](https://www.science.org/doi/10.1126/science.abj6987)
+[A complete reference genome improves analysis of human genetic variation](https://www.science.org/doi/10.1126/science.abl3533)
 
-# T2T Resources
+## T2T Data Resources
 
 **GitHub Repository** 
 
@@ -26,7 +26,7 @@
 
 [ensembl rapid release](https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_009914755.4/ensembl/variation/2022_10/vep/)
 
-**T2T-Aligned VCFs**
+**T2T-Aligned Control VCFs**
 
 - [1000Genomes (SNPs/Indels) - human-pangenomics](https://s3-us-west-2.amazonaws.com/human-pangenomics/index.html?prefix=T2T/CHM13/assemblies/variants/1000_Genomes_Project/chm13v2.0/all_samples_3202/)
 
@@ -38,11 +38,10 @@
 
 [Index of /pub/rapid-release/species/Homo_sapiens/GCA_009914755.4/ensembl/variation/2022_10/vcf](https://ftp.ensembl.org/pub/rapid-release/species/Homo_sapiens/GCA_009914755.4/ensembl/variation/2022_10/vcf/)
 
-# **Pipeline / Workflow**
-
-`sarek - nfcore`
-
-[sarek: Introduction](https://nf-co.re/sarek/3.4.0)
+## Re-alignment Workflow
+- We first generated FASTQs from BAM/CRAM files using the [`bam2fastq - nfcore`](https://nf-co.re/bamtofastq/2.0.0/) pipeline `v2.1.0`. The slurm run scripts are available [here](https://github.com/RAVING-Informatics/T2T-alignment/tree/main/bam2fastq)
+- We then used the [`sarek - nfcore`](https://nf-co.re/sarek/3.4.0) pipeline `v3.4.0` for realignment, variant calling, variant annotation, and quality control. The slurm run scripts are available here 
+- 
 
 ### Workflow Config for Setonix
 
@@ -53,23 +52,12 @@
 [Parabricks-Genomics-nf](https://github.com/Sydney-Informatics-Hub/Parabricks-Genomics-nf)
 [Clara Parabricks v4.0.1](https://docs.nvidia.com/clara/parabricks/4.0.1/index.html)
 
-### Pangenome genotyping workflow 
-
-[/Scripts/Pangenie](./Scripts/Pangenie)
-
 # Benchmarking
 
-### Compare VCFs
-
-**[hap.py](http://hap.py) - Haplotype VCF comparison**
-
-[GitHub - Illumina/hap.py: Haplotype VCF comparison tools](https://github.com/Illumina/hap.py)
+## Coverage across NMD-associated genes
+For analysis relating to differences in coverage and coveraghe uniformity across NMD genes, refer [here](https://github.com/RAVING-Informatics/T2T-alignment/tree/main/benchmarking/nmd_genes)
 
 # Variant Filtering
-
-**slivar**
-
-[GitHub - brentp/slivar: genetic variant expressions, annotation, and filtering for great good.](https://github.com/brentp/slivar)
 
 **GENMOD**
 
