@@ -8,6 +8,7 @@ Use the use the `samtools_submit_all.sh` script to specify the location of the `
   - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/samtools`
 - Use the multiqc report to extract out useful metric, including the number of mapped / unmapped reads.
   - Export the `samtools-stats-dp` data. See example `samtools-stats-dp.tsv`
+- Multiqc reports for this project available at: 
   - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/multiqc/multiqc_report.html`
   - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/multiqc/multiqc_report.html`
 
