@@ -22,9 +22,9 @@ module load samtools/1.15--h3843a85_0
 GENOME=grch38
 
 REF=/software/projects/pawsey0933/sv/references/hg38_masked/Homo_sapiens_assembly38_masked.fasta #grch38-linear
-REF=
+REF=/software/projects/pawsey0933/pangenome/refs/chm13v2.0.maskedY.rCRS.EBV.fasta #chm13-linear
 #REF=/scratch/pawsey0933/cfolland/benchmark/refs/hprc-v1.1-mc-$GENOME.ref.fa #pangenome
-INPUT_DIR=/scratch/pawsey0933/T2T/hg38_realignment/sarek_bwamem2_run2/preprocessing/mapped/ #input directory containing bam files
+INPUT_DIR="$2" #input directory containing bam files
 INPUT="$1"
 OUTPUT_DIR=/scratch/pawsey0933/cfolland/benchmark/output/samtools_stats/linear
 
