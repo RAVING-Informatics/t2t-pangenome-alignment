@@ -46,8 +46,10 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - ClinVar: variants described in ClinVar 
 - Instructions to generate filtered VCFs are available below.
 - Once the filtered VCFs are available, run `bcftools_stats_cohort.sh` to generate bcftools stats on each. Use `multiqc` to generate a report combining all files, and download the `bcftools_stats_vqc.tsv` data.
-- Use the R script: `parse_quality_scores.R` to convert the data into a format that is easier to plot.
+- Use the functions in R script: `parse_bcftools_stats_vqc.R` to convert the data into a format that is easier to plot.
 - Plot data with quality scores on x-axis and number of variants on y-axis using `plot_variant_quality_cohort.R`
+
+### Filter VCFs
 
 **Coding regions**
 
@@ -116,7 +118,7 @@ wget https://s3-us-west-2.amazonaws.com/human-pangenomics/T2T/CHM13/assemblies/c
 
 Use the script `syntenic_regions.sh` to generate a cohort VCF containing only syntenic variants. 
 
-**Mendelian Violations**
+### **Mendelian Violations**
 
 Calculate mendelian-violation rate using GATK `VariantEval MendelianViolationEvaluator`
 
@@ -137,7 +139,7 @@ singularity pull docker://broadinstitute/gatk@sha256:71b17ee42d149e8ec112603f530
 
 `gatk_mendel.sh`
 
-**PASS Variants**
+### **PASS Variants**
 
 Use `bcftools view` to count the number of PASS variants were called by Dysgu for each sample + the joint-called cohort. 
 
