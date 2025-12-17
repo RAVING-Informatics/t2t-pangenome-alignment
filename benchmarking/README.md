@@ -173,7 +173,10 @@ singularity pull docker://broadinstitute/gatk@sha256:71b17ee42d149e8ec112603f530
 
 **Outputs**
 - Outputs are available for genome-wide and exome analysis:
-  - chm13:
-  - grch38: 
+  - chm13: [`chm13_linear.MVs.byFamily.fixed.table`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/chm13_linear.MVs.byFamily.fixed.table) and [`chm13_linear.MVs.byFamily.exons.fixed.table`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/chm13_linear.MVs.byFamily.exons.fixed.table)
+  - grch38: [`grch38_linear.MVs.byFamily.fixed.table`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/grch38_linear.MVs.byFamily.fixed.table) and [`grch38_linear.MVs.byFamily.exons.fixed.table`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/grch38_linear.MVs.byFamily.exons.fixed.table)
+
+**Results**
+- Calculate the key results using the following spreadsheet [`mendel_viol_linear_calculations.xlsx`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/mendel_viol_linear_calculations.xlsx)
 
 
