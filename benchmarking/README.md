@@ -26,8 +26,8 @@ Use the use the `samtools_submit_all.sh` script to specify the location of the `
   - Proportion reads MQ0 = MQ0 reads / total reads
   - Proportion properly paired = reads properly paired bit set / total reads
   - Proportion misoriented reads = read pairs with other orientation / total reads
-- Use the `plot-mapping-stats-linear-hprc.R` script to generate a multifaceted plot of the key mapping statistics. Note, this script also contains data from pangenome realignment. Input data containing pangenome data is available here.
-- 
+- Use the `plot-mapping-stats-linear-hprc.R` script to generate a multifaceted plot of the key mapping statistics. Note, this script also contains data from pangenome realignment. Input data containing pangenome data is available [here](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/mapping/linear-hprc_t2t-hg38_mapping.csv).
+
 ## VARIANT QUALITY
 ### **`bcftools stats`**
 
