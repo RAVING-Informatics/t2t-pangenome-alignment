@@ -20,18 +20,24 @@ Run `bcftools stats` on the deepvariant and dysgu VCFs for each sample (not the 
 
 Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_stats_cohort.sh`.
 
+*Inputs*
+
+- Use the individual deepvariant VCFs, i.e. `D09-468.deepvariant.vcf.gz`, and dysgu VCFs, i.e. `D09-468.sorted.cram_dysgu.vcf`.
+  - CHM13 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/variant_calling/`
+  - GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/variant_calling/`
+- Use the cohort deepvariant callsets, i.e. `T2T_dv_glnexus_VEP.ann.vcf.gz`, and cohort dysgu variants, i.e. `dysgu_merge_T2T_VEP.ann_fixed.vcf.gz`
+  - CHM13 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/merge`
+  - GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep` 
+
+*Outputs*
+
 - bcftools files are available on the IRDS.  
   - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/bcftools_v1.15/`
   - grch38 `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/bcftools/`
 
-*Inputs*
-
-- Use the individual deepvariant VCFs i.e. `D09-468.deepvariant.vcf.gz`
-- Use the cohort deepvariant callsets for comparison with coding variants / clinvar variants (see below) i.e. `T2T_dv_glnexus_VEP.ann.vcf.gz`
-
 *Results*
 
-- Use multiqc to generate a report of the bcftools stats, and download the `bcftools_stats_vqc.tsv` data.
+- Use multiqc to generate a report of the `bcftools stats`, and download the `bcftools_stats_vqc.tsv` data.
 - Use the R script: `parse_quality_scores.R` to convert the data into a format that is easier to plot.
 - Plot data to represent quality scores on x-axis and number of variants on y-axis.
 - Normalise data by dividing by the total number of variants in each dataset.
