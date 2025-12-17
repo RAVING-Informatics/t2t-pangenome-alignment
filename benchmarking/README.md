@@ -154,25 +154,26 @@ Use the script `syntenic_regions.sh` to generate a cohort VCF containing only sy
 
 Calculate mendelian-violation rate using GATK `VariantEval MendelianViolationEvaluator`
 
-*Inputs*
+**Inputs**
 
 Use the cohort deepvariant callsets annotated with VEP: 
 - `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T realignment/variant_calling/glnexus/sarek_vep_glnexus/annotation/glnexus/joint_variant_calling/T2T_dv_glnexus_VEP.ann.vcf.gz`
 - `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T realignment/hg38_realignment/sarek_bwamem2_run2/annotated/dv_glnexus_VEP.ann.vcf.gz`
 
-*Setup Instructions*
+**Setup Instructions**
 
 Pull the singularity image from docker hub
 ```
 singularity pull docker://broadinstitute/gatk@sha256:71b17ee42d149e8ec112603f5305c873ab60d93949ef8bb62a4fff85427f56fb
 ```
 
-*Run Script*
+**Run Script**
 
 `gatk_mendel.sh`
 
-### **PASS Variants**
+**Outputs**
+- Outputs are available for genome-wide and exome analysis:
+  - chm13:
+  - grch38: 
 
-Use `bcftools view` to count the number of PASS variants were called by Dysgu for each sample + the joint-called cohort. 
 
-Use the `pass_variants_dysgu.sh` script.
