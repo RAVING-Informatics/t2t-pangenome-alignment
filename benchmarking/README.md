@@ -77,6 +77,7 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - The number of SVs called by Dysgu
   - The proportion of SVs called by Dysgu that pass the cut-off quality filter
 - In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#mendelian-violations).
+- The required input file is [`hprc-linear_mendel.csv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/hprc-linear_mendel.csv)
   - The Mendelian Violation rate
   - The number of *de novo* variants
   - The number of low-quality variants
@@ -177,6 +178,6 @@ singularity pull docker://broadinstitute/gatk@sha256:71b17ee42d149e8ec112603f530
   - grch38: [`grch38_linear.MVs.byFamily.fixed.table`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/grch38_linear.MVs.byFamily.fixed.table) and [`grch38_linear.MVs.byFamily.exons.fixed.table`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/grch38_linear.MVs.byFamily.exons.fixed.table)
 
 **Results**
-- Calculate the key results using the following spreadsheet [`mendel_viol_linear_calculations.xlsx`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/mendel_viol_linear_calculations.xlsx)
+- Calculate the key results using the following spreadsheet [`mendel_viol_linear_calculations.xlsx`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/mendel_viol_linear_calculations.xlsx).
 
 
