@@ -14,13 +14,13 @@ Use the use the `samtools_submit_all.sh` script to specify the location of the `
   - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/multiqc/multiqc_report.html`
 
 ## VARIANT QUALITY
-**`bcftools stats`**
+### **`bcftools stats`**
 
 Run `bcftools stats` on the deepvariant and dysgu VCFs for each sample (not the g.vcf files) using `bcftools_stats_ind.sh`. This is to generate per-sample summary statistics and also a plot of the number of variants of a certain variant quality score. See attached plot for example.
 
 Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_stats_cohort.sh`.
 
-*Inputs*
+**Inputs**
 
 - Use the individual deepvariant VCFs, i.e. `D09-468.deepvariant.vcf.gz`, and dysgu VCFs, i.e. `D09-468.sorted.cram_dysgu.vcf`.
   - CHM13 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/variant_calling/`
@@ -29,18 +29,25 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - CHM13 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/merge`
   - GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep` 
 
-*Outputs*
+**Outputs**
 
 - bcftools files are available on the IRDS.  
   - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/bcftools_v1.15/`
   - grch38 `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/bcftools/`
 
-*Results*
+**Results**
 
-- Use multiqc to generate a report of the `bcftools stats`, and download the `bcftools_stats_vqc.tsv` data.
+1. Frequency plot of variant quality.
+- Use the R script, `plot_variant_quality_cohort.R` to generate a multifaceted plot of variant quality, subsetted according to particular variant subsets:
+  - Genome-wide: genome variants (no filters)
+  - Exome: exomic variants
+  - Syntenic: variants in regions of CHM13 that are syntenic to GRCh38
+  - Genome mask: variants in technically reliable regions accessible using short read mapping
+  - ClinVar: variants described in ClinVar 
+- Instructions to generate filtered VCFs are available below.
+- Once the filtered VCFs are available, run `bcftools_stats_cohort.sh` to generate bcftools stats on each. Use `multiqc` to generate a report combining all files, and download the `bcftools_stats_vqc.tsv` data.
 - Use the R script: `parse_quality_scores.R` to convert the data into a format that is easier to plot.
-- Plot data to represent quality scores on x-axis and number of variants on y-axis.
-- Normalise data by dividing by the total number of variants in each dataset.
+- Plot data with quality scores on x-axis and number of variants on y-axis using `plot_variant_quality_cohort.R`
 
 **Coding regions**
 
