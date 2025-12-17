@@ -71,14 +71,15 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - deepvariant: [`linear_grch38-chm13_dv_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dv_general_stats_table.tsv)
   - dysgu: [`linear_grch38-chm13_dysgu_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dysgu_general_stats_table.tsv)
 - Calculate the number of per sample pass variants from dysgu VCFs using `pass_variants_dysgu.sh` to generate [`pass_dysgu_linear.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/pass_dysgu_linear.tsv)
+- Combine data into single csv: [`hprc-linear_variant_stats.csv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/hprc-linear_variant_stats.csv)
 - Use the R script, [`plot_variant_stats_linear_hprc.R`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/plot_variant_stats_linear_hprc.R) to generate a multifaceted plot of variant quality metrics, including the following sample-wise metrics derived from `bcftools stats`:
   - The number of variants called by DeepVariant
   - The number of SVs called by Dysgu
   - The proportion of SVs called by Dysgu that pass the cut-off quality filter
-In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#mendelian-violations).
-- The Mendelian Violation rate
-- The number of *de novo* variants
-- The number of low-quality variants
+- In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#mendelian-violations).
+  - The Mendelian Violation rate
+  - The number of *de novo* variants
+  - The number of low-quality variants
   
 ### Filter VCFs
 
