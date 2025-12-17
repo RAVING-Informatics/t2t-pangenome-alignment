@@ -49,12 +49,12 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
 **Outputs**
 
 - bcftools files are available on the IRDS.  
-  - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/bcftools_v1.15/`
-  - grch38 `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/bcftools/`
+  - CHM13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/bcftools_v1.15/`
+  - GRCh38 `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/bcftools/`
 
 **Results**
 
-1. Frequency plot of variant quality.
+*1. Frequency plot of variant quality*
 - Use the R script, `plot_variant_quality_cohort.R` to generate a multifaceted plot of variant quality, subsetted according to particular variant subsets:
   - Genome-wide: genome variants (no filters)
   - Exome: exomic variants
@@ -66,6 +66,16 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
 - Use the functions in R script: `parse_bcftools_stats_vqc.R` to convert the data into a format that is easier to plot.
 - Plot data with quality scores on x-axis and number of variants on y-axis using `plot_variant_quality_cohort.R`
 
+*2. Plot of variant quality metrics*
+- Use the R script, [`plot_variant_stats_linear_hprc.R`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/plot_variant_stats_linear_hprc.R) to generate a multifaceted plot of variant quality metrics, including the following sample-wise metrics derived from `bcftools stats`:
+- The number of variants called by DeepVariant
+- The number of SVs called by Dysgu
+- The proportion of SVs called by Dysgu that pass the cut-off quality filter
+In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described below.
+- The Mendelian Violation rate
+- The number of *de novo* variants
+- The number of low-quality variants
+  
 ### Filter VCFs
 
 **Coding regions**
