@@ -4,14 +4,28 @@
 Run `samtools stats` on the mapped `BAM` files output from `sarek`.
 Use the use the `samtools_submit_all.sh` script to specify the location of the `BAM` files. This script will iterate through and submit individual jobs for each in combination with `samtools_stats.sh`.
 - Alternatively, samtools stats is run as part of the `sarek/nfcore` workflow, with individual results stored in `./reports/samtools/`.
+
+**Inputs**
+- CHM13 Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/preprocessing/mapped`
+- GRCh38 Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/preprocessing/mapped`
+
+**Outputs**
 - Results for this project are available on the IRDS:
-  - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/samtools`
-  - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/samtools`
-- Use the multiqc report to extract out useful metric, including the number of mapped / unmapped reads.
-  - Export the `samtools-stats-dp` data. See example `samtools-stats-dp.tsv`
+  - CHM13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/reports/samtools`
+  - GRCh38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/reports/samtools`
 - Multiqc reports for this project available at: 
   - chm13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/multiqc/multiqc_report.html`
   - grch38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/multiqc/multiqc_report.html`
+
+**Results**
+- Use the multiqc report to extract out useful metric, including the number of mapped / unmapped reads.
+  - Export the `samtools-stats-dp` data. See examples [`linear_sarek_chm13_samtools-stats-dp.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/mapping/linear_sarek_chm13_samtools-stats-dp.tsv) and [`linear_sarek_grch38_samtools-stats-dp.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/mapping/linear_sarek_grch38_samtools-stats-dp.tsv)
+- Manipulate data in excel to calculate mapping statistics for each sample. See excel template `mapping_calculations.xlxs` and `linear_t2t-hg38_mapping.tsv` for result. 
+  - Proportion reads unmapped = reads unmapped / total reads
+  - Proportion reads mapped = reads mapped / total reads
+  - Proportion reads MQ0 = MQ0 reads / total reads
+  - Proportion properly paired = reads properly paired bit set / total reads
+  - Proportion misoriented reads = read pairs with other orientation / total reads
 
 ## VARIANT QUALITY
 ### **`bcftools stats`**
