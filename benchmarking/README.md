@@ -71,7 +71,7 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
 - The number of variants called by DeepVariant
 - The number of SVs called by Dysgu
 - The proportion of SVs called by Dysgu that pass the cut-off quality filter
-In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described below.
+In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#mendelian-violations).
 - The Mendelian Violation rate
 - The number of *de novo* variants
 - The number of low-quality variants
