@@ -72,11 +72,11 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - dysgu: [`linear_grch38-chm13_dysgu_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dysgu_general_stats_table.tsv)
 - Calculate the number of per sample pass variants from dysgu VCFs using `pass_variants_dysgu.sh` to generate [`pass_dysgu_linear.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/pass_dysgu_linear.tsv)
 - Combine data into single csv: [`hprc-linear_variant_stats.csv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/hprc-linear_variant_stats.csv)
-- Use the R script, [`plot_variant_stats_linear_hprc.R`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/plot_variant_stats_linear_hprc.R) to generate a multifaceted plot of variant quality metrics, including the following sample-wise metrics derived from `bcftools stats`:
+- Use the R script, [`plot_variant_stats_linear_hprc.R`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/plot_variant_stats_linear_hprc.R) to generate a multifaceted plot of variant quality metrics, including the following sample-wise metrics derived above:
   - The number of variants called by DeepVariant
   - The number of SVs called by Dysgu
   - The proportion of SVs called by Dysgu that pass the cut-off quality filter
-- In addition, the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#mendelian-violations).
+- In addition, include the following family-wise metrics calculated using `VariantEval MendelianViolationEvaluator` as described [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#mendelian-violations).
 - The required input file is [`hprc-linear_mendel.csv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/hprc-linear_mendel.csv)
   - The Mendelian Violation rate
   - The number of *de novo* variants
@@ -158,8 +158,8 @@ Calculate mendelian-violation rate using GATK `VariantEval MendelianViolationEva
 **Inputs**
 
 Use the cohort deepvariant callsets annotated with VEP: 
-- `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T realignment/variant_calling/glnexus/sarek_vep_glnexus/annotation/glnexus/joint_variant_calling/T2T_dv_glnexus_VEP.ann.vcf.gz`
-- `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T realignment/hg38_realignment/sarek_bwamem2_run2/annotated/dv_glnexus_VEP.ann.vcf.gz`
+- `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/merge/glnexus+dysgu/T2T_dv_glnexus_VEP.ann.vcf.gz`
+- `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep/dv_glnexus_VEP.ann.vcf.gz`
 
 **Setup Instructions**
 
