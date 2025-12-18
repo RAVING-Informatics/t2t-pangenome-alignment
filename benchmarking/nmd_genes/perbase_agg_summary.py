@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+#This script computes per-(gene, sample) summary statistics from a pre-sorted TSV of per-base (or per-interval) depths, and writes one output row per (gene, sample).
 import argparse, csv, math
 
 def idxs_for_median(n:int):
