@@ -78,7 +78,7 @@ The python script requires the following inputs:
 
 ## Plot the per-base gene coverage in R
 1) Use the script: `perbase_coverage_chm13-hg38.R` to generate a plot of the per-base coverage across a gene of interest.
-- Ensure to specify the gene of interest: @line160
+- Ensure to specify the gene of interest: @line166
 - As input, you need the exons and merged mosdepth results, for example:
   - `FRG2.perbase_mosdepth_hg38.tsv`
   - `FRG2.perbase_mosdepth_chm13.tsv`
