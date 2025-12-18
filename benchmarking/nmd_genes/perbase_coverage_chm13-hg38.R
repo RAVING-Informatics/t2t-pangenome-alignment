@@ -1,3 +1,5 @@
+##Use this scrip to generate a plot of the per-base coverage across a gene of interest
+
 # --- packages ---
 library(readr)
 library(dplyr)
@@ -245,10 +247,20 @@ final_plot <- cowplot::ggdraw() +
     angle = 90, x = 0.02, y = 0.5, vjust = 0.5, size = 12, fontface = "bold"
   )
 
-#pdf export
+
 pdf(paste0("./", gene, ".grch38-linear-hprc_perbase_cov.pdf"), width = 10, height = 8, )
 final_plot
 dev.off()
+
+ggplot2::ggsave(
+  filename = sprintf("%s.grch38-linear-hprc_perbase_cov.cairo.pdf", gene),
+  plot     = final_plot,
+  device   = cairo_pdf,          # needs the Cairo package installed
+  width    = 10, height = 8, units = "in",
+  bg       = "white",
+  onefile  = FALSE              # a single page
+  #useDingbats = FALSE            # safer font embedding
+)
 
 # high-res, flattened raster export
 ggplot2::ggsave(
@@ -256,3 +268,100 @@ ggplot2::ggsave(
   plot     = final_plot,
   width    = 10, height = 4, units = "in", dpi = 1000, bg = "white"
 )
+# (Optional) quick sanity check:
+min(df_hg38$start);  min(exons_hg38$start)
+min(df_chm13$start); min(exons_chm13$start)
+
+
+# --- load data -------------------------------------------------------------
+gene <- "COX6A1"
+
+# both per-base coverages are hg38-aligned
+df_linear <- read_tsv(paste0("../../../nmd_genes/", gene, ".perbase_mosdepth_linear_hg38.tsv"), show_col_types = FALSE)
+df_hprc   <- read_tsv(paste0("../../../nmd_genes/", gene, ".perbase_mosdepth_hprc_hg38.tsv"),   show_col_types = FALSE)
+
+# single exon set for hg38
+exons_hg38 <- read_tsv(paste0("../../../nmd_genes/", gene, ".grch38.exons.tsv"), show_col_types = FALSE)
+
+# --- optionally exclude a sample ------------------------------------------
+exclude <- "D21-0091"
+df_linear <- df_linear %>% dplyr::filter(sample != exclude)
+df_hprc   <- df_hprc   %>% dplyr::filter(sample != exclude)
+
+# Harmonise exon coords to BED-style against each coverage set (keeps them consistent on hg38)
+exons_hg38_lin  <- to_bed_style(exons_hg38, df_linear, force = "auto")
+exons_hg38_hprc <- to_bed_style(exons_hg38, df_hprc,   force = "auto")
+
+# --- aggregates ------------------------------------------------------------
+agg_linear <- agg_cov(df_linear)
+agg_hprc   <- agg_cov(df_hprc)
+
+# --- shared x-axis (same reference/gene model) -----------------------------
+# take the union of (coverage ∪ exons) across both datasets, then use one shared span
+xlim_lin_union  <- lims_from_union(df_linear, exons_hg38_lin)
+xlim_hprc_union <- lims_from_union(df_hprc,   exons_hg38_hprc)
+
+x_start <- min(xlim_lin_union[1],  xlim_hprc_union[1],  na.rm = TRUE)
+x_end   <- max(xlim_lin_union[2],  xlim_hprc_union[2],  na.rm = TRUE)
+xlim_shared <- c(x_start, x_end)
+
+# build one master gene model on hg38 and clip to the shared limits
+model_hg38 <- master_gene_model(exons_hg38, xlim_shared[1], xlim_shared[2])
+
+# --- shared y-scale --------------------------------------------------------
+y_cap <- max(
+  max(agg_linear$mean_depth, na.rm = TRUE),
+  max(agg_hprc$mean_depth,   na.rm = TRUE),
+  max(agg_linear$q75,        na.rm = TRUE),
+  max(agg_hprc$q75,          na.rm = TRUE)
+)
+y_breaks <- pretty(c(0, y_cap), n = 5)
+
+# --- plots -----------------------------------------------------------------
+# Suffixes clarify method; both are hg38
+pLinear_cov   <- plot_cov(df_linear, agg_linear, xlim_shared, y_cap, y_breaks,
+                          show_xticks = FALSE, title_suffix = " (Linear, GRCh38)")
+pLinear_model <- plot_master(model_hg38, xlim_shared, xlab = NULL)
+
+pHPRC_cov     <- plot_cov(df_hprc,   agg_hprc,   xlim_shared, y_cap, y_breaks,
+                          show_xticks = FALSE, title_suffix = " (HPRC, GRCh38)")
+pHPRC_model   <- plot_master(model_hg38, xlim_shared,
+                             xlab = paste0(unique(df_linear$chr), " position"))
+
+# two-row stacks (coverage + gene model) for each method
+linear_stack <- patchwork::wrap_plots(pLinear_cov, pLinear_model, ncol = 1, heights = c(3, 1))
+hprc_stack   <- patchwork::wrap_plots(pHPRC_cov,   pHPRC_model,   ncol = 1, heights = c(3, 1))
+
+# remove per-panel y-axis titles; we’ll draw one shared label later
+linear_stack <- linear_stack & theme(axis.title.y = element_blank())
+hprc_stack   <- hprc_stack   & theme(axis.title.y = element_blank())
+
+# stack methods vertically
+combined <- cowplot::plot_grid(
+  linear_stack, hprc_stack,
+  ncol = 1, rel_heights = c(1, 1), align = "v"
+)
+
+# final figure with shared y-axis label and title
+final_plot <- cowplot::ggdraw() +
+  cowplot::draw_plot(combined, x = 0.03, y = 0, width = 0.88, height = 0.9) +
+  cowplot::draw_label(
+    paste0(unique(df_linear$gene), " coverage (Linear vs HPRC, GRCh38)"),
+    x = 0.03, y = 0.99, hjust = 0, vjust = 1, fontface = "bold", size = 14
+  ) +
+  cowplot::draw_label(
+    "Mean depth with IQR band; dashed red line = mean coverage across span",
+    x = 0.03, y = 0.96, hjust = 0, vjust = 1, size = 10
+  ) +
+  cowplot::draw_label(
+    "Depth (mean, IQR band)",
+    angle = 90, x = 0.02, y = 0.5, vjust = 0.5, size = 12, fontface = "bold"
+  )
+
+pdf(paste0("./", gene, ".grch38_linear_vs_hprc_perbase_cov.pdf"), width = 10, height = 8)
+final_plot
+dev.off()
+
+# (Optional sanity checks)
+min(df_linear$start);  min(exons_hg38_lin$start)
+min(df_hprc$start);    min(exons_hg38_hprc$start)
