@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#SBATCH --job-name=merge
+#SBATCH --job-name=merge_regions_nmd
 #SBATCH --account=pawsey0933
 #SBATCH --partition=work
 #SBATCH --ntasks=1
@@ -21,4 +21,4 @@ cd /scratch/pawsey0933/cfolland/mosdepth/results/$mode
 module load samtools/1.15--h3843a85_0
 source /software/projects/pawsey0933/cfolland/miniconda3/etc/profile.d/mamba.sh
 
-python3 collect_coverage.py *.$ref.$mode.regions.bed.gz -o nmd.$ref.$mode.merged.tsv
+python3 collect_coverage_mosdepth_regions.py *.$ref.$mode.regions.bed.gz -o nmd.$ref.$mode.merged.tsv
