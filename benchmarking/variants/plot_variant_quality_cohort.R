@@ -22,18 +22,11 @@ source("/Users/00104561/Library/CloudStorage/OneDrive-UWA/Research/Projects/AIM1
 data_lines <- readLines("./data/hprc_bcftools_stats_vqc_cohort.tsv")
 
 # Assay labels must match the order of rows after transpose (see sanity check below).
-#linear
 assay_labels <- c(
   "genome", "clinvar", "exome", "mask", "syntenic",
   "genome", "clinvar", "exome", "mask"
 )
 assay <- c("genome", "exome", "clinvar", "mask", "genome", "exome", "clinvar", "mask")
-#hprc
-assay_labels <- c(
-  "genome", "exome", "mask", "syntenic",
-  "genome", "exome", "mask"
-)
-assay <- c("genome", "exome", "mask", "genome", "exome", "mask")
 
 # ---- Build tidy dataframe ----
 df <- create_quality_dataframe(data_lines)
@@ -130,7 +123,7 @@ if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
 save_pdf(plot_linear, "./linear_vqc_comparison.pdf", width = 10, height = 8)
 
 #hprc 
-plot_hprc <- (genome_plot + exome_plot + synteny_plot + mask_plot) +
+plot_hprc <- (genome_plot + exome_plot + synteny_plot + mask_plot + clinvar_plot) +
   plot_layout(ncol = 2)
 
 save_pdf(plot_hprc, "./hprc_vqc_comparison.pdf", width = 10, height = 8)
