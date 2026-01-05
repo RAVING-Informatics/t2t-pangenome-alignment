@@ -9,19 +9,31 @@ library(ggplot2)
 library(patchwork)
 library(forcats)
 
+save_pdf <- function(plot, file, width = 12, height = 5) {
+  ggsave(filename = file.path(out_dir, file), plot = plot, device = cairo_pdf,
+         width = width, height = height, units = "in")
+}
 
 # ---- Paths / inputs ----
-setwd("/Users/00104561/Library/CloudStorage/OneDrive-UWA/Research/Projects/AIM1_DATA-REANALYSIS/t2t-realignment/benchmark/variants/variant_quality_score/")
+setwd("/Users/00104561/Library/CloudStorage/OneDrive-UWA/Research/Projects/AIM1_DATA-REANALYSIS/benchmark/variant_quality_score/")
 
-source("/Users/00104561/Library/CloudStorage/OneDrive-UWA/Research/Projects/AIM1_DATA-REANALYSIS/t2t-realignment/benchmark/variants/variant_quality_score/parse_quality_scores.R")
+source("/Users/00104561/Library/CloudStorage/OneDrive-UWA/Research/Projects/AIM1_DATA-REANALYSIS/benchmark/variant_quality_score/code/parse_bcftools_stats_vqc.R")
 
-data_lines <- readLines("./data/bcftools_stats_vqc_cohort.tsv")
+data_lines <- readLines("./data/hprc_bcftools_stats_vqc_cohort.tsv")
 
 # Assay labels must match the order of rows after transpose (see sanity check below).
+#linear
 assay_labels <- c(
   "genome", "clinvar", "exome", "mask", "syntenic",
-  "genome", "null", "null", "clinvar", "exome", "mask"
+  "genome", "clinvar", "exome", "mask"
 )
+assay <- c("genome", "exome", "clinvar", "mask", "genome", "exome", "clinvar", "mask")
+#hprc
+assay_labels <- c(
+  "genome", "exome", "mask", "syntenic",
+  "genome", "exome", "mask"
+)
+assay <- c("genome", "exome", "mask", "genome", "exome", "mask")
 
 # ---- Build tidy dataframe ----
 df <- create_quality_dataframe(data_lines)
@@ -108,5 +120,17 @@ mask_plot    <- make_plot(masked,   "Genome Mask Variants", 600000, show_legend 
 clinvar_plot <- make_plot(clinvar,  "ClinVar Variants",       7000, show_legend = TRUE)
 
 # ---- Combine ----
-(genome_plot + exome_plot + synteny_plot + mask_plot + clinvar_plot) +
+plot_linear <- (genome_plot + exome_plot + synteny_plot + mask_plot + clinvar_plot) +
   plot_layout(ncol = 2)
+
+# Output directory (created if missing)
+out_dir <- "plots"
+if (!dir.exists(out_dir)) dir.create(out_dir, recursive = TRUE)
+
+save_pdf(plot_linear, "./linear_vqc_comparison.pdf", width = 10, height = 8)
+
+#hprc 
+plot_hprc <- (genome_plot + exome_plot + synteny_plot + mask_plot) +
+  plot_layout(ncol = 2)
+
+save_pdf(plot_hprc, "./hprc_vqc_comparison.pdf", width = 10, height = 8)
