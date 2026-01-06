@@ -6,9 +6,11 @@ Use the `samtools_submit_all.sh` script to specify the location of the `BAM` fil
 - Alternatively, `samtools stats` is run as part of the `sarek/nfcore` workflow, with individual results stored in `./reports/samtools/`.
 
 **Inputs**
+
 ***T2T-alignment***
 - CHM13 Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/preprocessing/mapped`
 - GRCh38 Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/preprocessing/mapped`
+  
 ***Pangenome-Alignment***
 - Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/Pangenome_realignment/batch_1/vg_giraffe/bams`
 
