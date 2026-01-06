@@ -144,8 +144,8 @@ Use the cohort deepvariant callsets annotated with VEP:
 - GRCh38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep/dv_glnexus_VEP.ann.vcf.gz`
 
 ***Pangenome-Alignment***
-- CHM13:
-- GRCh38: 
+- CHM13:`/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/Pangenome_realignment/batch_1/postprocess/vep/hprc-v1.1-mc-chm13_dv_glnexus_VEP.ann.vcf.gz`
+- GRCh38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/Pangenome_realignment/batch_1/postprocess/vep/hprc-v1.1-mc-grch38_dv_glnexus_VEP.ann.vcf.gz`
 
 **Setup Instructions**
 
