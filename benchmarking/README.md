@@ -7,7 +7,7 @@ Use the `samtools_submit_all.sh` script to specify the location of the `BAM` fil
 
 **Inputs**
 
-***T2T-alignment***
+***Linear-Alignment***
 - CHM13 Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/preprocessing/mapped`
 - GRCh38 Mapped BAMs: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/preprocessing/mapped`
   
@@ -38,19 +38,31 @@ Use the `samtools_submit_all.sh` script to specify the location of the `BAM` fil
 ## VARIANT QUALITY
 ### **`bcftools stats`**
 
-Run `bcftools stats` on the deepvariant and dysgu VCFs for each sample (not the g.vcf files) using `bcftools_stats_ind.sh`. This is to generate per-sample summary statistics and also a plot of the number of variants of a certain variant quality score. See attached plot for example.
+Run `bcftools stats` on the `deepvariant` and `dysgu` VCFs for each sample (not the g.vcf files) using `bcftools_stats_ind.sh`. This is to generate per-sample summary statistics and also a plot of the number of variants of a certain variant quality score. See attached plot for example.
 
 Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_stats_cohort.sh`.
 
 **Inputs**
 
 - Use the individual deepvariant VCFs, i.e. `D09-468.deepvariant.vcf.gz`, and dysgu VCFs, i.e. `D09-468.sorted.cram_dysgu.vcf`.
+
+***Linear-Alignment***
   - CHM13 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/variant_calling/`
   - GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/variant_calling/`
+
+***Pangenome-Alignment***
+  - CHM13 + GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/Pangenome_realignment/batch_1/vg_giraffe`
+     
 - Use the cohort deepvariant callsets, i.e. `T2T_dv_glnexus_VEP.ann.vcf.gz`, and cohort dysgu variants, i.e. `dysgu_merge_T2T_VEP.ann_fixed.vcf.gz`
+  
+***Linear-Alignment***
   - CHM13 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/merge`
   - GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep` 
 
+***Pangenome-Alignment***
+  - CHM13 + GRCh38 available here: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/Pangenome_realignment/batch_1/postprocess/vep`
+    - Note, the VCFs for different variant subsets are not available on the IRDS.
+    
 **Outputs**
 
 - bcftools files are available on the IRDS.  
@@ -67,7 +79,7 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - Genome mask: variants in technically reliable regions accessible using short read mapping
   - ClinVar: variants described in ClinVar 
 - Instructions to generate filtered VCFs are available [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#filter-vcfs).
-- Once the filtered VCFs are available, run `bcftools_stats_cohort.sh` to generate bcftools stats on each. Use `multiqc` to generate a report combining all files, and download the `bcftools_stats_vqc.tsv` data.
+- Once the filtered VCFs are available, run `bcftools_stats_cohort.sh` to generate `bcftools stats` on each. Use `multiqc` to generate a report combining all files, and download the `bcftools_stats_vqc.tsv` data.
 - Use the functions in R script: `parse_bcftools_stats_vqc.R` to convert the data into a format that is easier to plot.
 - Plot data with quality scores on x-axis and number of variants on y-axis using `plot_variant_quality_cohort.R`
 
