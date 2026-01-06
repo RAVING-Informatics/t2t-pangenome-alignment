@@ -175,8 +175,14 @@ Calculate mendelian-violation rate using GATK `VariantEval MendelianViolationEva
 **Inputs**
 
 Use the cohort deepvariant callsets annotated with VEP: 
-- `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/merge/glnexus+dysgu/T2T_dv_glnexus_VEP.ann.vcf.gz`
-- `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep/dv_glnexus_VEP.ann.vcf.gz`
+
+***Linear-Alignment***
+- CHM13: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/chm13/merge/glnexus+dysgu/T2T_dv_glnexus_VEP.ann.vcf.gz`
+- GRCh38: `/Volumes/PERKINS-LL-001/Sequencing/wgs/secondary/T2T_realignment/batch_1/grch38/postprocess/vep/dv_glnexus_VEP.ann.vcf.gz`
+
+***Pangenome-Alignment***
+- CHM13:
+- GRCh38: 
 
 **Setup Instructions**
 
@@ -187,7 +193,7 @@ singularity pull docker://broadinstitute/gatk@sha256:71b17ee42d149e8ec112603f530
 
 **Run Script**
 
-`gatk_mendel.sh`
+[`gatk_mendel.sh`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/gatk_mendel.sh)
 
 **Outputs**
 - Outputs are available for genome-wide and exome analysis:
