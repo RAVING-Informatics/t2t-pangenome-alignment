@@ -72,7 +72,7 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
 **Results**
 
 *1. Frequency plot of variant quality*
-- Use the R script, `plot_variant_quality_cohort.R` to generate a multifaceted plot of variant quality, subsetted according to particular variant subsets:
+- Use the R script, `plot_variant_quality_cohort.R` to generate a multifaceted plot of variant quality, subsetted according to particular variant callsets:
   - Genome-wide: genome variants (no filters)
   - Exome: exomic variants
   - Syntenic: variants in regions of CHM13 that are syntenic to GRCh38
