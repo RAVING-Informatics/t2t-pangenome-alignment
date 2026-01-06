@@ -91,7 +91,7 @@ The python script requires the following inputs:
   - `FRG2.perbase_mosdepth_chm13.tsv`
   - `FRG2.grch38.exons.tsv`
   - `FRG2.chm13.exons.tsv`
-- Example outputs are provided, see `ACTN2.grch38-chm13_perbase_cov.pdf`
+- Example outputs are provided, see `FRG2.grch38-chm13_perbase_cov.pdf`
 
 ## Calculate coverage uniformity
 1) The output file `all.perbase_mosdepth_${method}_${ref}.tsv` generated [above](https://github.com/RAVING-Informatics/T2T-alignment/tree/main/benchmarking/nmd_genes#collect-per-base-coverage-for-multiple-geneintervals-of-interest), can be used to calculate summary statstics for coverage across each gene per sample. If many genes were used as input, this will be a very large file, so it need to be sorted according to gene, sample and depth. 
