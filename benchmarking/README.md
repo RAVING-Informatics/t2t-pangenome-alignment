@@ -79,7 +79,7 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
   - Genome mask: variants in technically reliable regions accessible using short read mapping
   - ClinVar: variants described in ClinVar 
 - Instructions to generate filtered VCFs are available [below](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/README.md#filter-vcfs).
-- Once the filtered VCFs are available, run `bcftools_stats_cohort.sh` to generate `bcftools stats` on each. Use `multiqc` to generate a report combining all files, and download the `bcftools_stats_vqc.tsv` data.
+- Once the filtered VCFs are available, run `bcftools_stats_cohort.sh` to generate `bcftools stats` on each. Use `multiqc` to generate a report combining all files, and download the `bcftools_stats_vqc.tsv` data. For example, see the file [`linear_bcftools_stats_vqc_cohort.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_bcftools_stats_vqc_cohort.tsv)
 - Use the functions in R script: `parse_bcftools_stats_vqc.R` to convert the data into a format that is easier to plot.
 - Plot data with quality scores on x-axis and number of variants on y-axis using `plot_variant_quality_cohort.R`
 
