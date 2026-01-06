@@ -85,8 +85,8 @@ Run `bcftools stats` on the deepvariant and dysgu cohort VCFs using `bcftools_st
 
 *2. Plot of variant quality metrics*
 - Use the bcftools stats individual multiqc reports to export out the general variant stats table.
-  - deepvariant: [`linear_grch38-chm13_dv_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dv_general_stats_table.tsv)
-  - dysgu: [`linear_grch38-chm13_dysgu_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dysgu_general_stats_table.tsv)
+  - E.g. linear deepvariant: [`linear_grch38-chm13_dv_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dv_general_stats_table.tsv)
+  - E.g. linear dysgu: [`linear_grch38-chm13_dysgu_general_stats_table.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/linear_grch38-chm13_dysgu_general_stats_table.tsv)
 - Calculate the number of per sample pass variants from dysgu VCFs using `pass_variants_dysgu.sh` to generate [`pass_dysgu_linear.tsv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/pass_dysgu_linear.tsv)
 - Combine data into single csv: [`hprc-linear_variant_stats.csv`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/hprc-linear_variant_stats.csv)
 - Use the R script, [`plot_variant_stats_linear_hprc.R`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/variants/plot_variant_stats_linear_hprc.R) to generate a multifaceted plot of variant quality metrics, including the following sample-wise metrics derived above:
