@@ -1,6 +1,6 @@
 # Allele mapping bias
 Assess the mapping bias of linear (GRCh38) alignments (BWA-MEM) and GRCh38-surjected graph alignments (Giraffe and vg surject). 
-Recreate the analysis of allele bias from paper ["Pangenomics enables genotyping of known structural variants in 5202 diverse genomes" (Siren et al. 2021)](https://www.science.org/doi/10.1126/science.abg8871). See [Figure 4A](https://www.science.org/doi/10.1126/science.abg8871).
+Recreate the analysis of allele bias from paper ["Pangenomics enables genotyping of known structural variants in 5202 diverse genomes" (Siren et al. 2021)](https://www.science.org/doi/10.1126/science.abg8871). See [Figure 4A](https://www.science.org/doi/10.1126/science.abg8871#F4).
 
 Use BAM/CRAM files generated previously by `nfcore/sarek` (linear, bwa-mem) and `vg_snakemake` (pangenome, giraffe). 
 
