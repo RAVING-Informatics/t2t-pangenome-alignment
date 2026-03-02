@@ -1,3 +1,5 @@
+# Generating data
+
 ## Generate a .BED file containing coordinates for NMD genes
 
 1) Source a list of genes associated with neuromuscular diseases. I used the list of genes run on the [PathWest neuromuscular gene panel](https://pathwest.health.wa.gov.au/Our-Services/Clinical-Services/Diagnostic-Genomics/Neurogenetics)
@@ -81,7 +83,13 @@ The python script requires the following inputs:
 - mapfile: use the same file used to map the chromosome RefSeq IDs (NC_00#) to chromosome names (chr#) - i.e. `refseq-chr_hg38.tsv`
 - gene: gene name
 
-## Plot the per-base gene coverage in R
+## Calculate coverage uniformity
+1) The output file `all.perbase_mosdepth_${method}_${ref}.tsv` generated [above](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/README.md#collect-per-base-coverage-for-a-specific-geneinterval-of-interest), can be used to calculate summary statstics for coverage across each gene per sample. If many genes were used as input, this will be a very large file, so it need to be sorted according to gene, sample and depth. 
+2) The python script `perbase_agg_summary.sh` calculates the min/max/range/mean/median/SD per gene/sample from a pre-sorted file. Run the sorting and the python script using [`summarise_perbase_mosdepth.sh`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/summarise_perbase_mosdepth.sh).
+
+# Plotting
+
+## Compare per-base gene coverage across specific gene in R
 1) Use the script: `perbase_coverage_chm13-hg38.R` to generate a plot of the per-base coverage across a gene of interest.
 - Ensure to specify the gene of interest: @line166
 - As input, you need the exons and merged mosdepth results, for example:
@@ -91,7 +99,5 @@ The python script requires the following inputs:
   - `ACTN2.chm13.exons.tsv`
 - Example outputs are provided, see `ACTN2.grch38-chm13_perbase_cov.pdf`
 
-## Calculate coverage uniformity
-1) The output file `all.perbase_mosdepth_${method}_${ref}.tsv` generated [above](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/README.md#collect-per-base-coverage-for-a-specific-geneinterval-of-interest), can be used to calculate summary statstics for coverage across each gene per sample. If many genes were used as input, this will be a very large file, so it need to be sorted according to gene, sample and depth. 
-2) The python script `perbase_agg_summary.sh` calculates the min/max/range/mean/median/SD per gene/sample from a pre-sorted file. Run the sorting and the python script using [`summarise_perbase_mosdepth.sh`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/summarise_perbase_mosdepth.sh).
-3) Use the output from this script `all.perbase_mosdepth.summary.${method}_${ref}.tsv` as input into [`perbase-coverage_uniformity.r`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/perbase_coverage_nmd_comparison.r) to compare the average range in the coverage for each gene between CHM13 and GRCh38. This is to assess changes in coverage uniformity of NMD genes across the references.
+## Create plots comparing the coverage of NMD genes between GRCh38 and CHM13
+3) Use the files `all.perbase_mosdepth.summary.${method}_${ref}.tsv` as input into [`perbase_coverage_nmd_comparison.r`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/perbase_coverage_nmd_comparison.r) to compare the average coverage and coverage uniformity for each NMD gene between CHM13 and GRCh38.
