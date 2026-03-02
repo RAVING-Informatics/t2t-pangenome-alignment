@@ -90,7 +90,7 @@ The python script requires the following inputs:
 # Plotting
 
 ## Compare per-base gene coverage across specific gene in R
-1) Use the script: `perbase_coverage_chm13-hg38.R` to generate a plot of the per-base coverage across a gene of interest.
+1) Use the script: [`single-gene_perbase_coverage_chm13-hg38.R`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/single-gene_perbase_coverage_chm13-hg38.r) to generate a plot of the per-base coverage across a gene of interest.
 - Ensure to specify the gene of interest: @line166
 - As input, you need the exons and merged mosdepth results, for example:
   - `ACTN2.perbase_mosdepth_hg38.tsv`
