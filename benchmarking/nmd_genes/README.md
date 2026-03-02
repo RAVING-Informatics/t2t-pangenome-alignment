@@ -60,8 +60,6 @@ Output files are provided:
 - CHM13: [mosdepth_nmd.chm13.linear.merged.tsv](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/mosdepth_nmd.chm13.linear.merged.tsv)
 - GRCh38: [mosdepth_nmd.grch38.linear.merged.tsv](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/mosdepth_nmd.grch38.linear.merged.tsv)
 
-Use these files as input into the R script [`hg38-chm13_mosdepth_nmd_coverage.r`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/hg38-chm13_mosdepth_nmd_coverage.r) to calculate the mean coverage across all genes and compares this between GRCh38 and CHM13, producing useful summary plots and tables. 
-
 ## Collect per-base coverage for a specific gene/interval of interest.
    
 The script `collect_coverage_perbase.py` extracts the per-gene coverage for a single genomic interval from many per-base mosdepth outputs and writes a single long-format table:
