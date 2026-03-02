@@ -67,9 +67,17 @@ Output files are provided:
 The script `collect_coverage_perbase.py` extracts the per-gene coverage for a single genomic interval from many per-base mosdepth outputs and writes a single long-format table:
 `gene	chr	start	end	sample	depth`
 The script can be run easy using `merge_files_gene.sh` under `#single gene/interval`. The first time this script is run, lots of resources are needed as the python script will index the per-base.bed.gz files before extracting the depth metrics. After the first run, the time and memory allocations can be reduced significantly.
+The output format is `$gene.perbase_mosdepth_${method}_${ref}.tsv`:
+```
+gene	chr	start	end	sample	depth
+ACTN2	chr1	236087383	236087388	D09-468	38
+ACTN2	chr1	236087388	236087394	D09-468	39
+ACTN2	chr1	236087394	236087398	D09-468	43
+```
 
 ## Collect per-base coverage for multiple gene/intervals of interest.
-The script `collect_coverage_perbase_bed.py` achieves the same result as `collect_coverage_perbase.py`, however instead of taking a single gene/interval as input, it accepts a `.bed` file with multiple gene/intervals as input. This script can be run using `merge_files_gene.sh` under `#bed file with multiple genes/intervals`. Ensure to increase resources as needed. The output format is `all.perbase_mosdepth_${method}_${ref}.tsv`.
+The script `collect_coverage_perbase_bed.py` achieves the same result as `collect_coverage_perbase.py`, however instead of taking a single gene/interval as input, it accepts a `.bed` file with multiple gene/intervals as input. This script can be run using `merge_files_gene.sh` under `#bed file with multiple genes/intervals`. Ensure to increase resources as needed. The output format is `all.perbase_mosdepth_${method}_${ref}.tsv`:
+```
 
 ## Generate TSV files with exon and intron specifications for a gene
 1) The python script `gtf_region_to_tables.py` can be used to extract out the co-ordinates of exons and introns for a gene of interest from a gtf file input.
@@ -85,7 +93,13 @@ The python script requires the following inputs:
 
 ## Calculate coverage uniformity
 1) The output file `all.perbase_mosdepth_${method}_${ref}.tsv` generated [above](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/README.md#collect-per-base-coverage-for-a-specific-geneinterval-of-interest), can be used to calculate summary statstics for coverage across each gene per sample. If many genes were used as input, this will be a very large file, so it need to be sorted according to gene, sample and depth. 
-2) The python script `perbase_agg_summary.sh` calculates the min/max/range/mean/median/SD per gene/sample from a pre-sorted file. Run the sorting and the python script using [`summarise_perbase_mosdepth.sh`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/summarise_perbase_mosdepth.sh).
+2) The python script `perbase_agg_summary.sh` calculates the min/max/range/mean/median/SD per gene/sample from a pre-sorted file. Run the sorting and the python script using [`summarise_perbase_mosdepth.sh`](https://github.com/RAVING-Informatics/T2T-alignment/blob/main/benchmarking/nmd_genes/summarise_perbase_mosdepth.sh). The output is in the format: `all.perbase_mosdepth.summary.linear_chm13.tsv`
+```
+gene	sample	min_depth	max_depth	range_depth	mean_depth	median_depth	sd_depth
+AARS1	D09-468.chm13	17	91	74	54.3797	54	10.7496
+AARS1	D12-880.chm13	2	46	44	23.4331	24	7.4143
+AARS1	D12-881.chm13	6	65	59	33.0484	33	8.47207
+```
 
 # Plotting
 
