@@ -77,7 +77,6 @@ ACTN2	chr1	236087394	236087398	D09-468	43
 
 ## Collect per-base coverage for multiple gene/intervals of interest.
 The script `collect_coverage_perbase_bed.py` achieves the same result as `collect_coverage_perbase.py`, however instead of taking a single gene/interval as input, it accepts a `.bed` file with multiple gene/intervals as input. This script can be run using `merge_files_gene.sh` under `#bed file with multiple genes/intervals`. Ensure to increase resources as needed. The output format is `all.perbase_mosdepth_${method}_${ref}.tsv`:
-```
 
 ## Generate TSV files with exon and intron specifications for a gene
 1) The python script `gtf_region_to_tables.py` can be used to extract out the co-ordinates of exons and introns for a gene of interest from a gtf file input.
