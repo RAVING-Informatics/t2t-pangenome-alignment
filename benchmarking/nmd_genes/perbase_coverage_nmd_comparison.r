@@ -1,10 +1,8 @@
-#!/usr/bin/env Rscript
 # ==============================================================================
 # Script: nmd_perbase_compare_chm13_vs_grch38.R
 #
 # Purpose:
-#   Merge per-base-derived per-gene summary analyses for two references (GRCh38
-#   and CHM13) into a single workflow using ONLY per-base summary TSV inputs.
+#   Compare the coverage and coverage uniformity of NMD genes between GRCh38 and CHM13.
 #
 #   Given per-gene summary statistics (derived from per-base mosdepth outputs),
 #   this script:
@@ -18,7 +16,7 @@
 #          - mean depth (CHM13 − GRCh38)
 #          - SD depth   (CHM13 − GRCh38)
 #     5) Summarises per-gene differences across samples and selects top-N genes
-#        where CHM13 or GRCh38 has higher mean coverage.
+#        where CHM13 or GRCh38 has higher mean coverage and less uniform coverage.
 #     6) Generates publication-ready PDF plots and exports tidy TSV outputs.
 #
 # Inputs (TSV; per-gene summaries derived from per-base mosdepth):
@@ -31,19 +29,20 @@
 #
 # Outputs (written to ./plots/):
 #   PDFs:
-#     - ave_cov_nmd_genes.pdf
-#     - ave_sd_nmd_genes.pdf
-#     - scatter_sd_chm13_vs_grch38_zoom400.pdf
-#     - scatter_sd_chm13_vs_grch38_full.pdf
+#     - ave_cov_all_nmd_genes.pdf
+#     - ave_sd_all_nmd_genes.pdf
+#     - scatter_sd_chm13_vs_grch38_persample.pdf
+#     - scatter_sd_chm13_vs_grch38_mean.pdf
+#     - scatter_mean_chm13_vs_grch38_mean.pdf
 #     - scatter_mean_chm13_vs_grch38.pdf
-#     - t2t_genes_higher_mean_cov.pdf
-#     - grch38_genes_higher_mean_cov.pdf
+#     - t2t_genes_higher_mean_depth.pdf
+#     - grch38_genes_higher_mean_depth.pdf
 #
 #   TSVs:
-#     - sample_summary_across_genes.tsv
+#     - persample_summary_across_nmd_genes.tsv
 #     - total_summary_by_reference.tsv
-#     - wide_compare_mean_depth.tsv
-#     - wide_compare_sd_depth.tsv
+#     - compare_mean_depth_per_genexsample.tsv
+#     - compare_sd_depth_per_genexsample.tsv
 #     - gene_summary_mean_depth.tsv
 #     - gene_summary_sd_depth.tsv
 #
@@ -52,6 +51,9 @@
 #   - Sample IDs must match across references after suffix stripping.
 #   - Metrics are already per-gene summaries (this script does NOT use interval-
 #     level mosdepth output).
+#   - Genes are labelled in scatter plots only where |mean_diff| exceeds a
+#     threshold (>2 for SD depth; >1 for mean depth).
+#   - D21-0091 is excluded from all analyses.
 #
 # Author: Chiara Folland
 # ==============================================================================
