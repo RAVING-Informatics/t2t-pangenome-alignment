@@ -4,6 +4,7 @@ Run `concat.sh` on the VEP-annotated VCFs from Dysgu and DeepVariant.
 This produces a merged cohort VCF file that is sorted and does not contain any variants without CSQ annotation.
 
 # Annotate with Genmod
+- Use script `genmod.sh`
 
 # Add control population allele frequencies
 - 3202 srGS samples from 1000 Genomes Phase 3 recalled on T2T-CHM13
