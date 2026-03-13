@@ -15,18 +15,18 @@
 #SBATCH --export=ALL
 
 #shared
-ref=hg38
+ref=chm13
 method=linear
 
 #single gene/interval
-gene='ABCA7'
+gene='DMXL1'
 interval="chr19:1040106-1065572"
-single_py=/software/projects/pawsey0933/benchmarking/nmd_genes/collect_coverage_perbase.py
+single_py=/software/projects/pawsey0933/benchmarking/nmd_genes/scripts/collect_coverage_perbase.py
 
 #mutliple genes/intervals
-bed_py=/software/projects/pawsey0933/benchmarking/nmd_genes/collect_coverage_perbase_bed.py
-bed=/software/projects/pawsey0933/benchmarking/nmd_genes/nmd_gene_list_grch38.bed
-merged=all.perbase_mosdepth_${method}_${ref}.tsv
+bed_py=/software/projects/pawsey0933/benchmarking/nmd_genes/scripts/collect_coverage_perbase_bed.py
+bed=/software/projects/pawsey0933/benchmarking/nmd_genes/gene_list/nmd_gene_list_chm13.bed
+merged=batch2.perbase_mosdepth_${method}_${ref}.tsv
 
 cd /scratch/pawsey0933/cfolland/mosdepth/results/$method/$ref
 
