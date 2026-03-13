@@ -5,14 +5,18 @@
 #SBATCH --partition=work
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=8
-#SBATCH --mem=8G
+#SBATCH --mem=90G
 #SBATCH --nodes=1
-#SBATCH --time=0:40:00
+#SBATCH --time=12:00:00
 #SBATCH --mail-user=chiara.folland@perkins.org.au
 #SBATCH --mail-type=END
 #SBATCH --error=%j.%x.err
 #SBATCH --output=%j.%x.out
 #SBATCH --export=ALL
+
+#shared
+ref=hg38
+method=linear
 
 #single gene/interval
 gene='ABCA7'
@@ -23,10 +27,6 @@ single_py=/software/projects/pawsey0933/benchmarking/nmd_genes/collect_coverage_
 bed_py=/software/projects/pawsey0933/benchmarking/nmd_genes/collect_coverage_perbase_bed.py
 bed=/software/projects/pawsey0933/benchmarking/nmd_genes/nmd_gene_list_grch38.bed
 merged=all.perbase_mosdepth_${method}_${ref}.tsv
-
-#shared
-ref=hg38
-method=linear
 
 cd /scratch/pawsey0933/cfolland/mosdepth/results/$method/$ref
 
