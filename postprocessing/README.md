@@ -4,7 +4,7 @@ Run `concat.sh` on the VEP-annotated VCFs from Dysgu and DeepVariant.
 This produces a merged cohort VCF file that is sorted and does not contain any variants without CSQ annotation.
 
 # Annotate with Genmod
-- Use script `genmod.sh`
+Genmod is memory-intensive to run, so we first split the VCF by chromosome using `genmod_split.sh`, before running genmod on each VCF using `genmod_chr.sh`. The `.ped` file describes the family relationships required for genmod to annotation inheritance.
 
 # Add control population allele frequencies
 - 3202 srGS samples from 1000 Genomes Phase 3 recalled on T2T-CHM13
