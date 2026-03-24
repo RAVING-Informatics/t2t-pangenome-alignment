@@ -1,21 +1,23 @@
 
 # Run VEP annotation on joint-called VCFs
 `vep/`
-To run VEP on hg38 data, first download and unzip the cache:
+
+To run `vep` on hg38 data, first download and unzip the cache:
 ```
 wget https://ftp.ensembl.org/pub/release-114/variation/indexed_vep_cache/homo_sapiens_vep_114_GRCh38.tar.gz
 tar -xvf homo_sapiens_vep_114_GRCh38.tar.gz
 ```
 See run scripts for specifications.
 
-
 # Combine deepvariant and dysgu VCFs
 `combine/`
+
 Run `concat.sh` on the VEP-annotated VCFs from Dysgu and DeepVariant. 
 This produces a merged cohort VCF file that is sorted and does not contain any variants without CSQ annotation.
 
 # Annotate with Genmod
 `genmod/`
+
 `Genmod` is memory-intensive to run, so we first split the VCF by chromosome using `genmod_split.sh`, before running genmod on each VCF using `genmod_chr.sh`. The `.ped` file describes the family relationships required for genmod to annotation inheritance.
 
 # Add control population allele frequencies
