@@ -20,6 +20,8 @@ This produces a merged cohort VCF file that is sorted and does not contain any v
 
 `Genmod` is memory-intensive to run, so we first split the VCF by chromosome using `genmod_split.sh`, before running genmod on each VCF using `genmod_chr.sh`. The `.ped` file describes the family relationships required for genmod to annotation inheritance.
 
+After running Genmod, use `bgzip` on each vcf to compress and index the VCFs (`bgzip.sh`) before concatenating them with `bcftools concat` and sorting / indexing the cohort VCF (`concat-genmod.sh`).
+
 # Add control population allele frequencies
 
 - 3202 srGS samples from 1000 Genomes Phase 3 recalled on T2T-CHM13
