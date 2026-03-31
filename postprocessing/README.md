@@ -25,8 +25,8 @@ After running Genmod, use `bgzip` on each vcf to compress and index the VCFs (`b
 # Add control population allele frequencies
 
 - 3202 srGS samples from 1000 Genomes Phase 3 recalled on T2T-CHM13
-- The Human Pangenome Reference Consortium (HPRC) T2T-CHM13 callset, including 44 high quality diploid human assemblies, as described in [Liao et al. 2023](https://www.nature.com/articles/s41586-023-05896-x).
-- The combined HPRC and HGSVC3 T2T-CHM13 callset, including 42 HPRC assemblies + 65 HGVCS3, as described in [Logsdon et al. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11451754/) 
+- The Human Pangenome Reference Consortium (HPRC) v2.0 T2T-CHM13 callset, including 44 high quality diploid human assemblies, as described in [Liao et al. 2023](https://www.nature.com/articles/s41586-023-05896-x). Sourced from https://zenodo.org/records/7839719 
+- The combined HPRC and HGSVC3 T2T-CHM13 callset, including 42 HPRC assemblies + 65 HGVCS3, as described in [Logsdon et al. 2024](https://pmc.ncbi.nlm.nih.gov/articles/PMC11451754/). VCF available from [here](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/) (with [README](https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/20240223_Graph_Genomes_hgsvchprc_README.txt))
 - 76,156 srGS aligned to GRCh38 from gnomAD v3.1.2 and lifted over to T2T-CHM13
 
 See scripts: `combined_annotation.sh`
