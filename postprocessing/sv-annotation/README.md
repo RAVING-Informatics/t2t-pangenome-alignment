@@ -17,3 +17,19 @@
 - Highly customisable
 
 
+## Other SV AF Annotation Sources
+**HPRC-HGSV**
+These files were constructed with minigraph-cactus v2.7.2 from the HGSVC samples, HPRCv1, CHM13 and GRCh38 (216 haplotypes total).
+[Link to original paper](https://www.nature.com/articles/s41586-025-09140-6)
+Source of the VCF files: 
+```
+wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.vcf.gz
+wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.vcf.gz.tbi
+```
+**HPRCv2.0**
+More information on the VCFs available [here](https://42basepairs.com/browse/s3/human-pangenomics/pangenomes/scratch/2025_02_28_minigraph_cactus).
+Source of the VCF files:
+```
+wget https://42basepairs.com/download/s3/human-pangenomics/pangenomes/scratch/2025_02_28_minigraph_cactus/hprc-v2.0-mc-chm13/hprc-v2.0-mc-chm13.wave.vcf.gz
+wget https://42basepairs.com/download/s3/human-pangenomics/pangenomes/scratch/2025_02_28_minigraph_cactus/hprc-v2.0-mc-chm13/hprc-v2.0-mc-chm13.wave.vcf.gz.tbi
+```
