@@ -3,7 +3,7 @@
 ## AnnotSV 
 - As of Jul 2025, AnnotSV supports T2T-CHM13-based VCFs.
 - To use AnnotSV with CHM13-based VCFs, ensure the version is >3.5.
-- Once AnnotSV is installed as per the [documentation](https://github.com/lgmgeo/AnnotSV/blob/master/share/doc/AnnotSV/quickstart.md), the CHM13-based benign BED annotations need to be prepared via liftover. See the script `liftover_annotsv_chm13.sh`.
+- Once AnnotSV is installed as per the [documentation](https://github.com/lgmgeo/AnnotSV/blob/master/share/doc/AnnotSV/quickstart.md), the CHM13-based BED annotations need to be prepared via liftover. See the script `liftover_annotsv_chm13.sh`.
 
 **Issues with AnnotSV**
 - Does not appear to match SVs based on SVTYPE (i.e. INS, DEL, INV). Only matches based on co-ordinate overlaps.
@@ -16,17 +16,17 @@
 - Does not currently support CHM13
 - Highly customisable
 
-
 ## Other SV AF Annotation Sources
 **HPRC-HGSV**
 These files were constructed with minigraph-cactus v2.7.2 from the HGSVC samples, HPRCv1, CHM13 and GRCh38 (216 haplotypes total).
 [Link to original paper](https://www.nature.com/articles/s41586-025-09140-6)
-Source of the VCF files: 
+Source the VCF files: 
 ```
 wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.vcf.gz
 wget https://ftp.1000genomes.ebi.ac.uk/vol1/ftp/data_collections/HGSVC3/release/Graph_Genomes/1.0/2024_02_23_minigraph_cactus_hgsvc3_hprc/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.vcf.gz.tbi
 ```
 **HPRCv2.0**
+[Link to the original paper](https://www.nature.com/articles/s41586-023-05896-x) 
 More information on the VCFs available [here](https://42basepairs.com/browse/s3/human-pangenomics/pangenomes/scratch/2025_02_28_minigraph_cactus).
 Source of the VCF files:
 ```
