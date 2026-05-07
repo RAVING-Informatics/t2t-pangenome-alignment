@@ -19,7 +19,16 @@
 **Liftover SVAFotate BED**
 A BED file of SV annotations is available [here](https://zenodo.org/records/11642574). To liftover the BED file to T2T-CHM13 co-ordinates, use the following scripts:
 - `liftover_script.sh` - adapted from script from AnnotSV [`lift_Over_a_BED_file.tcl`](https://github.com/lgmgeo/AnnotSV/blob/master/share/tcl/AnnotSV/Scripts/lift_Over_a_BED_file.tcl)
-- `liftover_svfatotate_chm13.sh` - uses `liftover_script.sh` to liftover BED co-ordinates
+- `liftover_svfatotate_chm13.sh` - uses `liftover_script.sh` to liftover BED co-ordinates.
+
+These are the results of the liftover:
+```
+----------------------------------
+Total regions:    3455239
+Lifted regions:   3307338
+Unmapped regions: 147901
+----------------------------------
+```
 
 ## Other SV AF Annotation Sources
 **HPRC-HGSV**
