@@ -40,7 +40,12 @@ fi \
 | grep -v '^#' \
 | awk -F'\t' 'BEGIN{OFS="\t"} NF>2 {
     id=NR
-    print $1,$2,$3,id,substr($0, index($0,$4))
+    coords = $1"\t"$2"\t"$3
+
+    ann=""
+    for(i=4;i<=NF;i++) ann = ann (i==4?"":"\t") $i
+
+    print coords, id, ann
 }' > "$WORK/with_id.bed"
 
 # -----------------------------
@@ -54,22 +59,21 @@ cut -f1-4 "$WORK/with_id.bed" \
 }' > "$WORK/coords.bed"
 
 # -----------------------------
-# store annotations (SAFE FIX)
+# store annotations (FIXED)
 # -----------------------------
 SOURCE=$(basename "$CHAIN" | sed -E 's/^([^_-]+).*/\1/')
 
 awk -F'\t' -v OFS='\t' -v src="$SOURCE" '
 {
-    id=$4
+    id = $4
 
-    # remove first 4 columns cleanly
-    $1=""; $2=""; $3=""; $4=""
-    sub(/^\t+/, "")
+    ann=""
+    for(i=5;i<=NF;i++) ann = ann (i==5?"":"\t") $i
 
-    # optional prefix for embedded coords
-    gsub(/[0-9XYchrMT]+:[0-9]+-[0-9]+/, src"_" "&")
+    # prefix embedded coordinates
+    gsub(/[0-9XYchrMT]+:[0-9]+-[0-9]+/, src"_" "&", ann)
 
-    print id,$0
+    print id, ann
 }
 ' "$WORK/with_id.bed" > "$WORK/annotations.tsv"
 
@@ -99,23 +103,20 @@ join -1 4 -2 1 -t $'\t' \
 > "$WORK/merged.bed"
 
 # -----------------------------
-# Step 4: enforce clean tabs + consistent columns
+# Step 4: clean + enforce columns
 # -----------------------------
-echo "...cleaning and validating columns"
+echo "...cleaning"
 
-# normalize whitespace to strict tabs
 awk -v OFS="\t" '{$1=$1; print}' "$WORK/merged.bed" > "$WORK/clean.bed"
 
-# get expected column count
 EXPECTED=$(head -1 "$WORK/clean.bed" | awk '{print NF}')
 
-# keep only valid rows
 awk -v n="$EXPECTED" 'NF==n' "$WORK/clean.bed" > "$WORK/filtered.bed"
 
 # -----------------------------
-# Step 5: convert contigs → chromosomes
+# Step 5: contig → chromosome
 # -----------------------------
-echo "...converting CHM13 contigs"
+echo "...converting chromosomes"
 
 awk 'BEGIN{OFS="\t"}
 {
@@ -148,17 +149,13 @@ awk 'BEGIN{OFS="\t"}
 }' "$WORK/filtered.bed" > "$WORK/final.bed"
 
 # -----------------------------
-# Step 6: final sort (SAFE)
+# Step 6: final sort
 # -----------------------------
-echo "...final sorting"
-
 sort -k1,1V -k2,2n "$WORK/final.bed" > "$WORK/final.sorted.bed"
 
 # -----------------------------
-# Step 7: add header
+# Step 7: header
 # -----------------------------
-echo "...adding header"
-
 if [ -s "$WORK/header.txt" ]; then
     cat "$WORK/header.txt" "$WORK/final.sorted.bed" > "$OUT"
 else
@@ -183,4 +180,3 @@ cp "$WORK/unmapped.bed" "${OUT}.unmapped"
 rm -rf "$WORK"
 
 echo "✅ Liftover complete: $OUT"
-``
