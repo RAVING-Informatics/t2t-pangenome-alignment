@@ -16,6 +16,11 @@
 - Does not currently support CHM13
 - Highly customisable
 
+**Liftover SVAFotate BED**
+A BED file of SV annotations is available [here](https://zenodo.org/records/11642574). To liftover the BED file to T2T-CHM13 co-ordinates, use the following scripts:
+- `liftover_script.sh` - adapted from script from AnnotSV [`lift_Over_a_BED_file.tcl`](https://github.com/lgmgeo/AnnotSV/blob/master/share/tcl/AnnotSV/Scripts/lift_Over_a_BED_file.tcl)
+- `liftover_svfatotate_chm13.sh` - uses `liftover_script.sh` to liftover BED co-ordinates
+
 ## Other SV AF Annotation Sources
 **HPRC-HGSV**
 These files were constructed with minigraph-cactus v2.7.2 from the HGSVC samples, HPRCv1, CHM13 and GRCh38 (216 haplotypes total).
