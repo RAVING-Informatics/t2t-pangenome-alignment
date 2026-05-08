@@ -48,3 +48,4 @@ Source of the VCF files:
 wget https://42basepairs.com/download/s3/human-pangenomics/pangenomes/scratch/2025_02_28_minigraph_cactus/hprc-v2.0-mc-chm13/hprc-v2.0-mc-chm13.wave.vcf.gz
 wget https://42basepairs.com/download/s3/human-pangenomics/pangenomes/scratch/2025_02_28_minigraph_cactus/hprc-v2.0-mc-chm13/hprc-v2.0-mc-chm13.wave.vcf.gz.tbi
 ```
+To create a BED file compatible with running SVAFotate using the VCF above, use the following script `vcf_bed.sh`.
