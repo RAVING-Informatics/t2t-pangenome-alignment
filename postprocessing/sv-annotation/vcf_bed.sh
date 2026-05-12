@@ -29,7 +29,7 @@ tabix -p vcf $annotate/hprc-v2.0-mc-chm13.wave.biallelic.sorted.vcf.gz
 
 ## CONVERT VCF TO BED
 # NOTE, this script uses the following logic:
-# CHROM → column 1. -> remove "chr" prefix
+# CHROM → column 1
 # POS → START (VCF POS is 1-based; BED is 0-based, so subtract 1 if you want strict BED)
 # END → compute from POS + SVLEN (or from REF/ALT lengths if SVLEN not present)
 # SVLEN → from INFO (LEN= or derived) (absolute value)
