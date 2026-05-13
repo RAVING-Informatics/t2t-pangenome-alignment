@@ -20,12 +20,18 @@ hprc=${dir}/hprc-v2.0-mc-chm13.wave.biallelic.sorted.len50.bed.gz
 hgsvc=${dir}/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.sorted.len50.bed.gz
 out=${dir}/SVAFotate_core_SV_popAFs.CHM13.v4.2.bed.gz
 
+
+{
+zcat "${svaf}" | head -n 1
+
 (
-zcat "${svaf}"
-zcat "${hprc}" | tail -n +2
-zcat "${hgsvc}" | tail -n +2
-) | awk '
-NR==1 {print; next}
-$1=="#CHROM" {next}   # drop any extra headers safely
-{print}
-' | sort -k1,1 -k2,2n | gzip > "${out}"
+  zcat "${svaf}" | tail -n +2
+  zcat "${hprc}" | grep -v '^#'
+  zcat "${hgsvc}" | grep -v '^#'
+) | sort -k1,1 -k2,2n
+
+} | gzip > "${out}"
+
+
+
+
