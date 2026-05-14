@@ -17,7 +17,7 @@
 dir=/scratch/pawsey0933/cfolland/t2t/batch2/annotation
 svaf=${dir}/SVAFotate_core_SV_popAFs.CHM13.v4.1.bed.gz
 hprc=${dir}/hprc-v2.0-mc-chm13.wave.biallelic.sorted.len50.bed.gz
-hgsvc=${dir}/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.sorted.len50.bed.gz
+hgsvc=${dir}/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.len50.bed.gz
 out=${dir}/SVAFotate_core_SV_popAFs.CHM13.v4.2.bed.gz
 
 
@@ -31,7 +31,3 @@ zcat "${svaf}" | head -n 1
 ) | sort -k1,1 -k2,2n
 
 } | gzip > "${out}"
-
-
-
-

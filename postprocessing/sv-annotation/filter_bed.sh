@@ -16,8 +16,8 @@
 IN_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hprc-v2.0-mc-chm13.wave.biallelic.sorted.fixed.bed.gz
 OUT_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hprc-v2.0-mc-chm13.wave.biallelic.sorted.len50.bed.gz
 
-#IN_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.sorted.fixed.bed.gz
-#OUT_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.sorted.len50.bed.gz
+#IN_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.bed.gz
+#OUT_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.len50.bed.gz
 
 zcat "$IN_BED" | awk '
 BEGIN { before=0; after=0; OFS="\t" }

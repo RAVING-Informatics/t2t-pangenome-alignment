@@ -18,14 +18,18 @@ module load bcftools/1.15--haf5b3da_0
 
 annotate=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/
 ref=/software/projects/pawsey0933/pangenome/refs/chm13v2.0.maskedY.rCRS.EBV.fasta
+prefix=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm
+#prefix=hprc-v2.0-mc-chm13.wave
 
 cd $annotate
 
 # PREPROCESSING 
-# convert multiallelic to biallelic and sort vcf
-#bcftools norm -m -any --check-ref skip -f $ref -o $annotate/hprc-v2.0-mc-chm13.wave.biallelic.vcf.gz $annotate/hprc-v2.0-mc-chm13.wave.vcf.gz
-#bcftools sort -T $annotate -o $annotate/hprc-v2.0-mc-chm13.wave.biallelic.sorted.vcf.gz $annotate/hprc-v2.0-mc-chm13.wave.biallelic.vcf.gz
-#tabix -p vcf $annotate/hprc-v2.0-mc-chm13.wave.biallelic.sorted.vcf.gz
+# convert multiallelic to biallelic, recompute AF and sort vcf
+bcftools norm -m -any --check-ref skip -f $ref -o $annotate/$prefix.biallelic.vcf.gz $annotate/$prefix.vcf.gz
+bcftools annotate -x INFO/AF $annotate/$prefix.biallelic.vcf.gz -Oz -o $annotate/tmp.vcf.gz #only for hgsvc vcf
+bcftools +fill-tags $annotate/tmp.vcf.gz -Oz -o $dir/$prefix.biallelic.af.vcf.gz -- -t AF #only for hgsvc vcf
+bcftools sort -T $annotate -o $annotate/$prefix.biallelic.af.sorted.vcf.gz $annotate/$prefix.biallelic.af.vcf.gz
+tabix -p vcf $annotate/$prefix.biallelic.af.sorted.vcf.gz
 
 ## CONVERT VCF TO BED
 # NOTE, this script uses the following logic:
@@ -39,8 +43,8 @@ cd $annotate
 # AF → from INFO (AF=)
 # Other columns - added to be compatible with SVAFotate
 
-INPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.sorted.vcf.gz
-OUTPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.sorted.bed.gz
+INPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.vcf.gz
+OUTPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.bed.gz
 SOURCE="HGVSC"
 
 LC_ALL=C zcat "$INPUT" | awk -v source="$SOURCE" '
