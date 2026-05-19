@@ -13,28 +13,39 @@
 #SBATCH --output=%j.%x.out
 #SBATCH --export=ALL
 
-IN_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hprc-v2.0-mc-chm13.wave.biallelic.sorted.fixed.bed.gz
-OUT_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hprc-v2.0-mc-chm13.wave.biallelic.sorted.len50.bed.gz
-
 #IN_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.bed.gz
 #OUT_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.len50.bed.gz
 
+IN_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hprc-v2.0-mc-chm13.wave.biallelic.sorted.bed.gz
+OUT_BED=/scratch/pawsey0933/cfolland/t2t/batch2/annotation/hprc-v2.0-mc-chm13.wave.biallelic.sorted.len50.bed.gz
+
 zcat "$IN_BED" | awk '
-BEGIN { before=0; after=0; OFS="\t" }
+BEGIN { 
+    before=0; 
+    after=0; 
+    unique=0;
+    OFS="\t" 
+}
 
 {
     before++
 
-    # Keep rows where:
-    # column 4 > 50 AND AF (column 8) is not 0
+    # Apply your filters
     if ($4 > 50 && $8+0 > 0) {
-        print
+
+        # Remove duplicate rows (based on full line)
+        if (!seen[$0]++) {
+            print
+            unique++
+        }
+
         after++
     }
 }
 
 END {
     print "Total variants before filtering: " before > "/dev/stderr"
-    print "Total variants after filtering: " after > "/dev/stderr"
+    print "Total variants passing filters: " after > "/dev/stderr"
+    print "Total unique variants after deduplication: " unique > "/dev/stderr"
 }
 ' | gzip > "$OUT_BED"

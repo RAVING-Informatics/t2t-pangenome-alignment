@@ -43,9 +43,14 @@ tabix -p vcf $annotate/$prefix.biallelic.af.sorted.vcf.gz
 # AF → from INFO (AF=)
 # Other columns - added to be compatible with SVAFotate
 
-INPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.vcf.gz
-OUTPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.bed.gz
-SOURCE="HGVSC"
+#INPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.vcf.gz
+#OUTPUT=hgsvc3-hprc-2024-02-23-mc-chm13-vcfbub.a100k.wave.norm.biallelic.af.sorted.bed.gz
+#SOURCE="HGVSC"
+
+INPUT=hprc-v2.0-mc-chm13.wave.biallelic.sorted.vcf.gz
+OUTPUT=hprc-v2.0-mc-chm13.wave.biallelic.sorted.bed.gz
+SOURCE=HPRCv2_wave
+
 
 LC_ALL=C zcat "$INPUT" | awk -v source="$SOURCE" '
 BEGIN {
@@ -59,14 +64,20 @@ BEGIN {
     fixed_cols = 8;
     extra_cols = n_header - fixed_cols;
 }
+
 !/^#/ {
     chrom=$1; pos=$2; id=$3; ref=$4; alt=$5; info=$8;
 
-    # added normalisation here
-    sub(/^chr/, "", chrom)
-    if (chrom == "M") chrom = "MT"
+    # Normalize chromosome
+    sub(/^chr/, "", chrom);
+    if (chrom == "M") chrom = "MT";
 
     start = pos - 1;
+
+    # Fix ID: take first if multiple, replace > with -
+    split(id, ids, ";");
+    id = ids[1];
+    gsub(/>/, "-", id);
 
     svlen=""; svtype=""; af="";
     n = split(info, fields, ";");
@@ -88,10 +99,24 @@ BEGIN {
         else svtype="MNP";
     }
 
-    printf "%s\t%d\t%d\t%d\t%s\t%s\t%s\t%s",
-        chrom, start, end, svlen, svtype, source, id, af;
+    # Build output safely using array (robust fix)
+    n_out = 0;
 
-    for (i=1; i<=extra_cols; i++) printf "\tNA";
-    printf "\n";
+    out[++n_out] = chrom;
+    out[++n_out] = start;
+    out[++n_out] = end;
+    out[++n_out] = svlen;
+    out[++n_out] = svtype;
+    out[++n_out] = source;
+    out[++n_out] = id;
+    out[++n_out] = (af == "" ? "NA" : af);
+
+    for (i=1; i<=extra_cols; i++) {
+        out[++n_out] = "NA";
+    }
+
+    for (i=1; i<=n_out; i++) {
+        printf "%s%s", out[i], (i==n_out ? "\n" : OFS);
+    }
 }
 ' | gzip > "$OUTPUT"
